@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/07/08/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Machine Learning/Deep Learning Note1</title>
     <url>/2024/07/09/Learning/</url>
     <content><![CDATA[<p>机器学习的一点笔记（其实只是拿来练一下公式输入）</p>
@@ -35,21 +53,13 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/07/08/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>Machine Learning/Deep Learning Note2</title>
+    <url>/2024/07/10/learning2/</url>
+    <content><![CDATA[<p>多层感知机的实现</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch import nn, softmax</span><br><span class="line">from d2l import torch as d2l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">batch_size = 256</span><br><span class="line">train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size)</span><br><span class="line"></span><br><span class="line">num_inputs , num_outputs, num_hiddens = 784,10,256</span><br><span class="line">#第一层是输入层</span><br><span class="line">W1 = nn.Parameter(torch.randn(num_inputs,num_hiddens,requires_grad=True))</span><br><span class="line">#前面两个参数分别对应行数和列数</span><br><span class="line">b1 = nn.Parameter(torch.zeros(num_hiddens,requires_grad=True))</span><br><span class="line">#第二层是输出层</span><br><span class="line">W2 = nn.Parameter(torch.randn(num_hiddens,num_outputs,requires_grad=True))</span><br><span class="line">b2 = nn.Parameter(torch.zeros(num_outputs,requires_grad=True))</span><br><span class="line"></span><br><span class="line">params = [W1,b1,W2,b2]</span><br><span class="line"></span><br><span class="line">def relu(X):</span><br><span class="line">    a = torch.zeros_like(X)</span><br><span class="line">    #生成一个全0的tensor，和X的形状一致</span><br><span class="line">    return torch.max(X,a)</span><br><span class="line">#模型实现</span><br><span class="line">def net(X):</span><br><span class="line">    X = X.reshape((-1,num_inputs))</span><br><span class="line">    H = relu(torch.matmul(X,W1) + b1)</span><br><span class="line">    return torch.matmul(H,W2) + b2</span><br><span class="line"></span><br><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">#模型的训练</span><br><span class="line">num_epochs , lr = 10, 0.1</span><br><span class="line">updater = torch.optim.SGD(params,lr=lr)</span><br><span class="line">d2l.train_ch3(net,train_iter,test_iter,loss,num_epochs,updater)</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <tags>
+        <tag>ML DeepLearning</tag>
+      </tags>
   </entry>
 </search>

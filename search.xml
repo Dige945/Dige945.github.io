@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Machine Learning/Deep Learning Note2</title>
-    <url>/2024/07/10/learning2/</url>
-    <content><![CDATA[<p><img src="/pic/dcgzj.png" alt="img"></p>
-<p>tips：一般在神经网络中，一层神经网络指的是权重<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.371ex" height="1.595ex" role="img" focusable="false" viewBox="0 -683 1048 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path></g></g></g></svg></mjx-container>，偏差<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.971ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 429 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g></g></g></svg></mjx-container>，以及激活函数；输入层(input layer)一般不纳入其中，因为它只有一个输入</p>
-<p>多层感知机的实现</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch import nn, softmax</span><br><span class="line">from d2l import torch as d2l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">batch_size = 256</span><br><span class="line">train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size)</span><br><span class="line"></span><br><span class="line">num_inputs , num_outputs, num_hiddens = 784,10,256</span><br><span class="line">#第一层是输入层</span><br><span class="line">W1 = nn.Parameter(torch.randn(num_inputs,num_hiddens,requires_grad=True))</span><br><span class="line">#前面两个参数分别对应行数和列数</span><br><span class="line">b1 = nn.Parameter(torch.zeros(num_hiddens,requires_grad=True))</span><br><span class="line">#第二层是输出层</span><br><span class="line">W2 = nn.Parameter(torch.randn(num_hiddens,num_outputs,requires_grad=True))</span><br><span class="line">b2 = nn.Parameter(torch.zeros(num_outputs,requires_grad=True))</span><br><span class="line"></span><br><span class="line">params = [W1,b1,W2,b2]</span><br><span class="line"></span><br><span class="line">def relu(X):</span><br><span class="line">    a = torch.zeros_like(X)</span><br><span class="line">    #生成一个全0的tensor，和X的形状一致</span><br><span class="line">    return torch.max(X,a)</span><br><span class="line">#模型实现</span><br><span class="line">def net(X):</span><br><span class="line">    X = X.reshape((-1,num_inputs))</span><br><span class="line">    H = relu(torch.matmul(X,W1) + b1)</span><br><span class="line">    return torch.matmul(H,W2) + b2</span><br><span class="line"></span><br><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">#模型的训练</span><br><span class="line">num_epochs , lr = 10, 0.1</span><br><span class="line">updater = torch.optim.SGD(params,lr=lr)</span><br><span class="line">d2l.train_ch3(net,train_iter,test_iter,loss,num_epochs,updater)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>ML DeepLearning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Machine Learning/Deep Learning Note1</title>
+    <title>ML/Deep Learning Note1-杂记</title>
     <url>/2024/07/09/Learning/</url>
     <content><![CDATA[<p>机器学习的一点笔记（其实只是拿来练一下公式输入）</p>
 <p>1、sigmoid activation function</p>
@@ -63,5 +51,33 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>ML/DeepLearning Note2-MLP(多层感知机)</title>
+    <url>/2024/07/10/learning2/</url>
+    <content><![CDATA[<p><img src="/pic/dcgzj.png" alt="img"></p>
+<p>tips：一般在神经网络中，一层神经网络指的是权重<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.371ex" height="1.595ex" role="img" focusable="false" viewBox="0 -683 1048 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path></g></g></g></svg></mjx-container>，偏差<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.971ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 429 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g></g></g></svg></mjx-container>，以及激活函数；输入层(input layer)一般不纳入其中，因为它只有一个输入</p>
+<p>多层感知机的实现</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch import nn, softmax</span><br><span class="line">from d2l import torch as d2l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">batch_size = 256</span><br><span class="line">train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size)</span><br><span class="line"></span><br><span class="line">num_inputs , num_outputs, num_hiddens = 784,10,256</span><br><span class="line">#第一层是输入层</span><br><span class="line">W1 = nn.Parameter(torch.randn(num_inputs,num_hiddens,requires_grad=True))</span><br><span class="line">#前面两个参数分别对应行数和列数</span><br><span class="line">b1 = nn.Parameter(torch.zeros(num_hiddens,requires_grad=True))</span><br><span class="line">#第二层是输出层</span><br><span class="line">W2 = nn.Parameter(torch.randn(num_hiddens,num_outputs,requires_grad=True))</span><br><span class="line">b2 = nn.Parameter(torch.zeros(num_outputs,requires_grad=True))</span><br><span class="line"></span><br><span class="line">params = [W1,b1,W2,b2]</span><br><span class="line"></span><br><span class="line">def relu(X):</span><br><span class="line">    a = torch.zeros_like(X)</span><br><span class="line">    #生成一个全0的tensor，和X的形状一致</span><br><span class="line">    return torch.max(X,a)</span><br><span class="line">#模型实现</span><br><span class="line">def net(X):</span><br><span class="line">    X = X.reshape((-1,num_inputs))</span><br><span class="line">    H = relu(torch.matmul(X,W1) + b1)</span><br><span class="line">    return torch.matmul(H,W2) + b2</span><br><span class="line"></span><br><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">#模型的训练</span><br><span class="line">num_epochs , lr = 10, 0.1</span><br><span class="line">updater = torch.optim.SGD(params,lr=lr)</span><br><span class="line">d2l.train_ch3(net,train_iter,test_iter,loss,num_epochs,updater)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>ML DeepLearning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ML/Deep Learning Note1-数据集</title>
+    <url>/2024/07/11/learning3/</url>
+    <content><![CDATA[<h2 id="数据集的分类"><a href="#数据集的分类" class="headerlink" title="数据集的分类"></a>数据集的分类</h2><p>1、训练数据集：负责拿来训练模型参数的（W b等等）</p>
+<p>2、验证数据集（通常从训练数据集中取没有用过的数据集）：用于选择模型超参数</p>
+<p>3、测试数据集：全新的、可能没有任何标签的数据集，用于测试模型的水平</p>
+<p>warning：训练数据集和验证数据集不要混在一起用</p>
+<h2 id="k则交叉验证数据集"><a href="#k则交叉验证数据集" class="headerlink" title="k则交叉验证数据集"></a>k则交叉验证数据集</h2><p><img src="/pic/example1.png" alt="img"></p>
+<p>上图为K=3的例子</p>
+<p>图中将数据集均分为3部分，每一次取其中1/3作为验证数据集，重复三次，取K个验证数据集的误差的平均</p>
+<p>tips：通常 K=5 或 K=10</p>
+]]></content>
+      <tags>
+        <tag>ML DeepLearning</tag>
+      </tags>
   </entry>
 </search>

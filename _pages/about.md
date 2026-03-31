@@ -57,9 +57,9 @@ More info about configuring Academic Pages can be found in [the guide](https://a
 
 Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. Mang Ye. My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
 
-## Selected Publications
+## Publications
 
 {% assign pubs = site.publications | reverse %}
-{% for post in pubs limit: 5 %}
+{% for post in pubs %}
   {% include archive-single.html %}
 {% endfor %}

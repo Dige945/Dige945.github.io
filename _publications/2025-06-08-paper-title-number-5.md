@@ -4,7 +4,7 @@ collection: publications
 category: conferences
 permalink: /publications/my-paper/
 excerpt: 'PP-VI-REID'
-venue: 'CVPR2026'
+venue: 'CVPR'
 year: 2026
 authors: 'Yudi Xie, Zhongao Zhou, Bin Yang†, Zhenghan Chen, Mang Ye†'
 thumb: '/images/publications/PPVIREID.png'

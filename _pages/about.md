@@ -56,3 +56,12 @@ For more info
 More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful. -->
 
 Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. Mang Ye. My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
+
+## Selected Publications
+
+{% assign pubs = site.publications | reverse %}
+{% for post in pubs limit: 5 %}
+  {% include archive-single.html %}
+{% endfor %}
+
+[View all publications](/publications/)

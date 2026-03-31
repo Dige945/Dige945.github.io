@@ -42,10 +42,7 @@
             <p class="pub-card__authors">{{ post.authors }}</p>
           {% endif %}
 
-          <p class="pub-card__venue">
-            {{ post.venue }}
-            {% if post.year %}, <strong>{{ post.year }}</strong>{% elsif post.date %}, <strong>{{ post.date | date: "%Y" }}</strong>{% endif %}
-          </p>
+          <p class="pub-card__venue">{{ post.venue }}{% if post.year %}, <strong>{{ post.year }}</strong>{% elsif post.date %}, <strong>{{ post.date | date: "%Y" }}</strong>{% endif %}</p>
 
           {% if post.excerpt and site.read_more != 'enabled' %}
             <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>

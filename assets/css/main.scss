@@ -44,9 +44,13 @@
 
 .pub-card {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 1.25rem;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 1.1rem;
   align-items: start;
+}
+
+.pub-card__thumb {
+  width: 200px;
 }
 
 .pub-card__thumb img {
@@ -57,26 +61,43 @@
 }
 
 .pub-card__title {
-  margin-bottom: 0.35rem;
-  line-height: 1.25;
+  margin: 0 0 0.3rem;
+  line-height: 1.2;
+  font-size: 2.1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pub-card__title a {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  color: inherit;
 }
 
 .pub-card__authors,
 .pub-card__venue,
 .pub-card__links {
-  margin: 0.15rem 0;
+  margin: 0.1rem 0;
 }
 
 .pub-card__authors {
-  font-size: 1.15rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
 }
 
 .pub-card__venue {
-  font-size: 1.15rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
 }
 
 .pub-card__links {
-  font-size: 1.15rem;
+  font-size: 0.9rem;
+}
+
+.pub-card .archive__item-excerpt {
+  font-size: 0.95rem;
+  margin-top: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 800px) {
@@ -85,6 +106,10 @@
   }
 
   .pub-card__thumb {
-    max-width: 240px;
+    width: min(200px, 100%);
+  }
+
+  .pub-card__title {
+    font-size: 1.5rem;
   }
 }

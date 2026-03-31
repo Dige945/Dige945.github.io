@@ -44,12 +44,6 @@
 
           <p class="pub-card__venue">{{ post.venue }}{% if post.year %}, <strong>{{ post.year }}</strong>{% elsif post.date %}, <strong>{{ post.date | date: "%Y" }}</strong>{% endif %}</p>
 
-          {% if post.excerpt and site.read_more != 'enabled' %}
-            <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
-          {% elsif post.excerpt and site.read_more == 'enabled' %}
-            <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p></p>
-          {% endif %}
-
           {% if post.paperurl or post.projecturl %}
             <p class="pub-card__links">
               {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% endif %}

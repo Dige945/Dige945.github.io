@@ -53,6 +53,9 @@
   width: 140px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .pub-card__thumb img {

@@ -7,6 +7,7 @@ excerpt: 'PP-VI-REID'
 venue: 'CVPR'
 year: 2026
 authors: 'Yudi Xie, Zhongao Zhou, Bin Yang†, Zhenghan Chen, Mang Ye†'
+bold_author: 'Yudi Xie'
 thumb: '/images/publications/PPVIREID.png'
 projecturl: 'https://github.com/Dige945/PPA_CVPR26'
 ---

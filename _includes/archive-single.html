@@ -39,7 +39,12 @@
           <h2 class="archive__item-title pub-card__title" itemprop="headline">{{ title }}</h2>
 
           {% if post.authors %}
-            <p class="pub-card__authors">{{ post.authors }}</p>
+            {% if post.bold_author %}
+              {% capture bold_html %}<strong>{{ post.bold_author }}</strong>{% endcapture %}
+              <p class="pub-card__authors">{{ post.authors | replace: post.bold_author, bold_html }}</p>
+            {% else %}
+              <p class="pub-card__authors">{{ post.authors }}</p>
+            {% endif %}
           {% endif %}
 
           <p class="pub-card__venue">{{ post.venue }}{% if post.year %}, <strong>{{ post.year }}</strong>{% elsif post.date %}, <strong>{{ post.date | date: "%Y" }}</strong>{% endif %}</p>

@@ -26,6 +26,44 @@
       </div>
     {% endif %}
 
+    {% if post.collection == 'publications' %}
+      {% assign pub_thumb = post.thumb | default: teaser %}
+      <div class="pub-card">
+        {% if post.thumb or post.header.teaser %}
+          <div class="pub-card__thumb">
+            <img src="{% if pub_thumb contains '://' %}{{ pub_thumb }}{% else %}{{ pub_thumb | relative_url }}{% endif %}" alt="{{ post.title }} thumbnail">
+          </div>
+        {% endif %}
+
+        <div class="pub-card__content">
+          <h2 class="archive__item-title pub-card__title" itemprop="headline">{{ title }}</h2>
+
+          {% if post.authors %}
+            <p class="pub-card__authors">{{ post.authors }}</p>
+          {% endif %}
+
+          <p class="pub-card__venue">
+            {{ post.venue }}
+            {% if post.year %}, <strong>{{ post.year }}</strong>{% elsif post.date %}, <strong>{{ post.date | date: "%Y" }}</strong>{% endif %}
+          </p>
+
+          {% if post.excerpt and site.read_more != 'enabled' %}
+            <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+          {% elsif post.excerpt and site.read_more == 'enabled' %}
+            <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p></p>
+          {% endif %}
+
+          {% if post.paperurl or post.projecturl %}
+            <p class="pub-card__links">
+              {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% endif %}
+              {% if post.paperurl and post.projecturl %} | {% endif %}
+              {% if post.projecturl %}<a href="{{ post.projecturl }}">Project</a>{% endif %}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+
     <h2 class="archive__item-title" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
@@ -40,15 +78,6 @@
 
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.collection == 'publications' %}
-          {% if post.date %}
-            <p>Published in <i>{{ post.venue }}</i>, {{ post.date | date: "%Y" }} </p>
-          {% else %}
-            <p>Published in <i>{{ post.venue }}</i></p>
-          {% endif %}
-          {% if post.authors %}
-            <p><strong>Authors:</strong> {{ post.authors }}</p>
-          {% endif %}
         {% elsif post.date %}
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}
@@ -85,6 +114,7 @@
       <p><a href="{{ post.slidesurl }}">Download Slides</a></p>
     {% elsif post.bibtexurl %}
       <p><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% endif %}
     {% endif %}
 
   </article>

@@ -3,11 +3,11 @@ title: "Towards Cross-Modal Preservation, Consistency and Alignment for Privacy-
 collection: publications
 category: conferences
 permalink: /publications/my-paper/
-excerpt: '在这里写一句论文简介。'
+excerpt: 'PP-VI-REID'
 venue: 'CVPR2026'
+year: 2026
 authors: 'Yudi Xie, Zhongao Zhou, Bin Yang†, Zhenghan Chen, Mang Ye†'
-paperurl: '/files/your-paper.pdf'
+thumb: '/images/publications/PPVIREID.png'
+projecturl: 'https://github.com/Dige945/PPA_CVPR26'
 ---
-
-This is my publication page.
 

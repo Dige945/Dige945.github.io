@@ -63,5 +63,3 @@ Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software En
 {% for post in pubs limit: 5 %}
   {% include archive-single.html %}
 {% endfor %}
-
-[View all publications](/publications/)

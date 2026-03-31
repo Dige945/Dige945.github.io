@@ -1,13 +1,20 @@
 ---
-title: "Paper Title Number 5, with math $$E=mc^2$$"
+title: "Towards Cross-Modal Preservation, Consistency and Alignment for Privacy-Preserving Visible-Infrared Person Re-Identification"
 collection: publications
 category: conferences
-permalink: /publication/2024-02-17-paper-title-number-4
-excerpt: 'This paper is about a famous math equation, $$E=mc^2$$'
-date: 2024-02-17
-venue: 'GitHub Journal of Bugs'
-paperurl: 'https://academicpages.github.io/files/paper3.pdf'
-citation: 'Your Name, You. (2024). &quot;Paper Title Number 3.&quot; <i>GitHub Journal of Bugs</i>. 1(3).'
+permalink: /publication/my-paper-template
+excerpt: '在这里写一句论文简介。'
+date: 2026
+venue: 'CVPR2026'
+authors: 'Yudi Xie, Zhongao Zhou, Bin Yang†, Zhenghan Chen, Mang Ye†'
 ---
 
-Using [MathJax](https://www.mathjax.org/) in the description is supported - $$E=mc^2$$ - however, the use must be mindful that the default delimiters are `$$...$$` and `\\[...\\]` which differs from the `$...$` that is typically expected.
+把这篇文件直接改成你的真实论文信息即可。
+
+可修改字段：
+- `title`: 论文标题
+- `date`: 发表日期（YYYY-MM-DD）
+- `venue`: 会议/期刊名
+- `excerpt`: 简介
+- `paperurl`: 论文 PDF 链接（可放在 `files/` 目录）
+- `citation`: 引用格式

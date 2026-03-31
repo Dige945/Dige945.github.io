@@ -1,5 +1,6 @@
 ---
-title: Some_Interpretation_About_Resnet
+layout: single
+title: 'Some Interpretations About ResNet'
 date: 2024-08-24 10:53:52
 tags: Deeplearning
 mathjax: true

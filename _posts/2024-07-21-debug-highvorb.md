@@ -1,5 +1,6 @@
 ---
-title: debug a learning algorithm
+layout: single
+title: 'Debug a Learning Algorithm'
 date: 2024-07-21 16:02:28
 tags: ML
 mathjax: true

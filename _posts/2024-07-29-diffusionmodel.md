@@ -1,5 +1,6 @@
 ---
-title: DiffusionModel
+layout: single
+title: 'Diffusion Models'
 date: 2024-07-29 11:48:16
 tags: DeepLearning
 mathjax: true

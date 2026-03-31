@@ -1,5 +1,6 @@
 ---
-title: Precision_Recall
+layout: single
+title: 'Precision & Recall Metrics'
 date: 2024-08-27 12:16:32
 tags: ML
 mathjax: true

@@ -72,18 +72,18 @@ Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software En
 
 ### Orienteer (定向越野)
 
-- 2024 Hubei Provincial University Orienteering Championship: 1st Place, Men's Group Team Race
-- 2024 Hubei Provincial University Orienteering Championship: 4th Place, Men's Group Relay Race
-- 2023 Hubei Provincial Orienteering Championship: 2nd Place, Middle Distance Race (M18A Group)
-- 2024 Hubei Provincial Orienteering and Radio Direction Finding Championship: 2nd Place, Orienteering Elite Group Team
-- 2025 Hubei Provincial Orienteering and Radio Direction Finding Championship: 6th Place, 144MHz Radio Direction Finding (M21-B Group)
-- Wuhan University Campus Orienteering Challenge: 1st Place, Professional Group
+- 1st Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Team-Race
+- 4th Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Relay Race
+- 2nd Place, 2023 Hubei Provincial Orienteering Championship, Middle Distance Race
+- 2nd Place, 2024 Hubei Provincial Orienteering and Radio Direction Finding Championship, Orienteering Elite Group Team
+- 6th Place, 2025 Hubei Provincial Orienteering and Radio Direction Finding Championship, 144MHz Radio Direction Finding
+- 1st Place, Wuhan University Campus Orienteering Challenge, Professional Group
 
 ### Computer Competitions (计算机竞赛)
 
-- China University Computer Design Competition: First Prize, South Central Region
-- "Huazhong Cup" University Mathematical Modeling Challenge: First Prize
--  The Chinese Mathematics Competitions for College Students: First Prize 
+- First Prize, China University Computer Design Competition, South Central Region
+- First Prize, "Huazhong Cup" University Mathematical Modeling Challenge
+- First Prize, The Chinese Mathematics Competitions for College Students 
 
 ### Honors (荣誉称号)
 

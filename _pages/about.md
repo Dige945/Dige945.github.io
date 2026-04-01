@@ -55,7 +55,7 @@ For more info
 ------
 More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful. -->
 
-Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. Mang Ye. My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
+Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. [Mang Ye](https://marswhu.github.io/). My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
 
 ## News
 
@@ -67,3 +67,29 @@ Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software En
 {% for post in pubs %}
   {% include archive-single.html %}
 {% endfor %}
+
+## Selected Awards
+
+### Orienteer (定向越野)
+
+- 2024 Hubei Provincial University Orienteering Championship: 1st Place, Men's Group Team Race
+- 2024 Hubei Provincial University Orienteering Championship: 4th Place, Men's Group Relay Race
+- 2023 Hubei Provincial Orienteering Championship: 2nd Place, Middle Distance Race (M18A Group)
+- 2024 Hubei Provincial Orienteering and Radio Direction Finding Championship: 2nd Place, Orienteering Elite Group Team
+- 2025 Hubei Provincial Orienteering and Radio Direction Finding Championship: 6th Place, 144MHz Radio Direction Finding (M21-B Group)
+- Wuhan University Campus Orienteering Challenge: 1st Place, Professional Group
+
+### Computer Competitions (计算机竞赛)
+
+- China University Computer Design Competition: First Prize, South Central Region
+- "Huazhong Cup" University Mathematical Modeling Challenge: First Prize
+-  The Chinese Mathematics Competitions for College Students: First Prize 
+
+### Honors (荣誉称号)
+
+- 2023-2024 National Scholarship
+- 2024-2025 National Scholarship
+- First-Class Scholarship of Wuhan University
+- Lei Jun Computer Innovation and Development Fund
+- Wuhan University "Advanced Individual in Sports"
+- Wuhan University "Activist in Social Activities"

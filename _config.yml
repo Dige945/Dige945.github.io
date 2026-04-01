@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Yudi Xie"
   pronouns         : # example: "she/her"  
-  bio              : "Student,Vlogger,Orienteering Runner"
+  bio              : "Student, Vlogger, Runner"
   location         : "Wuhan"
   employer         : "Wuhan University"
   uri              : # URL
@@ -221,6 +221,9 @@ kramdown:
 
 # These settings control the types of collections used by the template
 collections:
+  news:
+    output: true
+    permalink: /:collection/:path/
   teaching:
     output: true
     permalink: /:collection/:path/
@@ -282,6 +285,15 @@ defaults:
       author_profile: true
       share: true
       comment: true
+  # _news
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
   # _talks
   - scope:
       path: ""

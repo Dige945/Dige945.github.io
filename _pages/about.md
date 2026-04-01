@@ -59,9 +59,7 @@ Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software En
 
 ## News
 
-{% for item in site.news %}
-  {% include archive-single.html %}
-{% endfor %}
+- **February 2026**: One paper accepted by CVPR 2026! See you at Denver!
 
 ## Publications
 

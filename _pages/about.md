@@ -60,7 +60,7 @@ Hi, I am Yudi Xie (谢宇迪), a third-year undergraduate student in Software En
 ## News
 
 - **February 2026**: One paper accepted by CVPR 2026! See you at Denver!
-- **March 2026**: Awarded the “Academic Pioneer” title by the School of Computer Science, Wuhan University (2 recipients school-wide, the only undergraduate recipient)
+- **March 2026**: Awarded the "Academic Pioneer" title by the School of Computer Science, Wuhan University (2 recipients school-wide, the only undergraduate recipient)
 
 ## Publications
 

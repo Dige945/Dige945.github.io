@@ -248,11 +248,11 @@ body {
   width: 140px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  align-self: start;
-  margin-top: 1.8rem;
+  align-self: center;
+  margin-top: 0;
 }
 
 .pub-card__content {
@@ -339,7 +339,8 @@ html[data-theme="dark"] .masthead {
 
   .pub-card__thumb {
     width: 120px;
-    margin-top: 4.15rem;
+    align-self: center;
+    margin-top: 0;
   }
 
   .pub-card__title {
@@ -350,10 +351,6 @@ html[data-theme="dark"] .masthead {
     line-height: 1.28;
     border-bottom: 0;
     box-shadow: none;
-  }
-
-  .page__content .pub-card__title::before {
-    content: none;
   }
 
   .pub-card__authors {

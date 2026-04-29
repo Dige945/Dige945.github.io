@@ -330,6 +330,49 @@ html[data-theme="dark"] .masthead {
   margin-bottom: 0.5rem;
 }
 
+.page--home {
+  .pub-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+  }
+
+  .pub-card__thumb {
+    width: 120px;
+    margin-top: 0.35rem;
+  }
+
+  .pub-card__title {
+    display: block;
+    margin-bottom: 0.35rem;
+    padding-bottom: 0;
+    font-size: 0.98rem;
+    line-height: 1.28;
+    border-bottom: 0;
+    box-shadow: none;
+  }
+
+  .pub-card__title::before {
+    content: none;
+  }
+
+  .pub-card__authors {
+    margin-bottom: 0.18rem;
+    line-height: 1.35;
+  }
+
+  .pub-card__links {
+    margin-top: 0.18rem;
+    color: var(--global-text-color);
+    line-height: 1.35;
+  }
+
+  .pub-card__venue {
+    color: var(--global-text-color);
+    font-weight: 600;
+  }
+}
+
 @media (max-width: 800px) {
   .pub-card {
     grid-template-columns: 1fr;

@@ -47,13 +47,15 @@
             {% endif %}
           {% endif %}
 
-          <p class="pub-card__venue">{{ post.venue }}{% if post.year %}, <strong>{{ post.year }}</strong>{% elsif post.date %}, <strong>{{ post.date | date: "%Y" }}</strong>{% endif %}</p>
-
-          {% if post.paperurl or post.projecturl %}
+          {% if post.paperurl or post.projecturl or post.venue %}
             <p class="pub-card__links">
               {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% endif %}
               {% if post.paperurl and post.projecturl %} | {% endif %}
               {% if post.projecturl %}<a href="{{ post.projecturl }}">Project</a>{% endif %}
+              {% if post.venue %}
+                {% if post.paperurl or post.projecturl %} | {% endif %}
+                <span class="pub-card__venue">{{ post.venue }}{% if post.year %}, {{ post.year }}{% elsif post.date %}, {{ post.date | date: "%Y" }}{% endif %}</span>
+              {% endif %}
             </p>
           {% endif %}
         </div>

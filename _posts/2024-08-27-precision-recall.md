@@ -21,11 +21,11 @@ So we need a new standard to evaluate the accuracy of a model
 
 Suppose $y=1$ in presence of rare class we want to detect.
 
-![img](/pic/example45.png)
+![img](/images/posts/example45.png)
 
 From the picture ,  we can find in the actual class , the number of "$y=1$" is 15+10=25 , the number of "$y=0$" is 5+70 =75 , it meets with the situation of " Rare disease ".
 
-![img](/pic/example46.png)
+![img](/images/posts/example46.png)
 
 If "$y=1$" in both predicted class and actual class , we call it True positive.
 

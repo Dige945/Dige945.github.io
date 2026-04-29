@@ -8,11 +8,11 @@ mathjax: true
 # LeNet
 
 当年的LeNet是用来识别手写数字的，伴随着诞生了一个知名数据集MNIST
-![img](/pic/example28.png)
+![img](/images/posts/example28.png)
 
 # AlexNet
 
-![img](/pic/example29.png)
+![img](/images/posts/example29.png)
 
 AlexNet是更大更深的LeNet，10x参数个数，260x计算复杂度
 

@@ -31,14 +31,14 @@ $$p(X)=p(x_1) \cdot p(x_2|x_1)\cdot p(x_3|x_1,x_2)\cdot p(x_T|x_1,...,x_{T-1})$$
 
 ## 模型建立
 
-![img](/pic/example47.png)
+![img](/images/posts/example47.png)
 
 对条件概率建模
 
 $$p(x_t|x_1,...,x_{t-1})=p(x_t|f(x_1,...,x_{t-1}))$$
 
 ### 马尔可夫假设
-![img](/pic/example47.png)
+![img](/images/posts/example47.png)
 
 假设当前数据只和过去 $\tau$ 个数据点有关（不然数据量大的话，每一个点都和前面所有点有关联计算量过于庞大，有时候实际情况也是并不一定和很久之前的信息点有关系）
 
@@ -51,7 +51,7 @@ $$p(x_t|x_1,...,x_{t-1})=p(x_t|x_{t-\tau},...,x_{t-1})=p(x_t|f(x_{t-\tau},...,x_
 
 这样 $x_t=p(x_t|h_t)$
 
-![img](/pic/example49.png)
+![img](/images/posts/example49.png)
 
 每一个旧的 $x_{t-1}$ 和 $h_{t-1}$ 都会合成一个新的 $h_t$ ,然后旧的 $x_{t-1}$ 和新合成的 $h_t$ 共同合成新的 $x_t$ ，如图所示
 

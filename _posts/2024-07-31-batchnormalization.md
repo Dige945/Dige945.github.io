@@ -15,7 +15,7 @@ mathjax: true
 
 下图是VGG网络（可以看出网络是经典的逐渐收敛的形状
 
-![img](/pic/example40.png)
+![img](/images/posts/example40.png)
 
 
 所以，我们可以在学习底部层的时候避免变化顶部层吗？

@@ -1,6 +1,5 @@
 ---
-layout: single
-title: 'Diffusion Models'
+title: DiffusionModel
 date: 2024-07-29 11:48:16
 tags: DeepLearning
 mathjax: true
@@ -11,19 +10,19 @@ Divided into part procession , Diffusion Model has a "Forward Process" and a "Re
 ### Forward Process
 Continuously adding noise into a image 
 
-![img](/images/posts/example30.png)
+![img](/pic/example30.png)
 
 ### Reverse Process
 Continuously denoise the image that filled with noise by training a neural network
 
-![img](/images/posts/example31.png)
+![img](/pic/example31.png)
 
 ### Objective
 Then we could use the trained network to produce a new picture from a random noise-distribution image
 
 # VAE vs. Diffusion Model
 
-![img](/images/posts/example32.png)
+![img](/pic/example32.png)
 
 The bottleneck part or the CODE in the VAE model is quite like the picture after adding noise  N times
 
@@ -60,7 +59,7 @@ In Diffusion Model
 
 tips:$\bar{\alpha_1},\bar{\alpha_2},\bar{\alpha_3},\bar{\alpha_4},\bar{\alpha_5},...,\bar{\alpha_T}$ is increasingly smaller ,which means the noise will Noise takes up a larger percentage of the image
 
-![img](/images/posts/example37.png)
+![img](/pic/example37.png)
 
 
 # Sampling
@@ -81,12 +80,12 @@ $6:$ return $x_0$
 
 ---
 
-![img](/images/posts/example38.png)
+![img](/pic/example38.png)
 
 
 # Maximum Likelihood Estimation
 
-![img](/images/posts/example39.png)
+![img](/pic/example39.png)
 
 we sample {$x^1,x^2,...,x^m$} from $P_{data}(x)$
 

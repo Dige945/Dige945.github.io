@@ -339,7 +339,7 @@ html[data-theme="dark"] .masthead {
 
   .pub-card__thumb {
     width: 120px;
-    margin-top: 0.35rem;
+    margin-top: 4.15rem;
   }
 
   .pub-card__title {
@@ -352,7 +352,7 @@ html[data-theme="dark"] .masthead {
     box-shadow: none;
   }
 
-  .pub-card__title::before {
+  .page__content .pub-card__title::before {
     content: none;
   }
 

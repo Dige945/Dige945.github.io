@@ -9,7 +9,7 @@ venue: "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 20
 award:
 authors: "Yudi Xie, Zhongao Zhou, Bin Yang&dagger;, Zhenghan Chen, Mang Ye&dagger;"
 bold_author: "Yudi Xie"
-excerpt: "This work studies privacy-preserving visible-infrared person re-identification through cross-modal preservation, consistency, and alignment, aiming to maintain recognition performance while reducing sensitive visual exposure."
+excerpt: "This work studies privacy-preserving visible-infrared person re-identification through cross-modal preservation, consistency, and alignment, aiming to preserve privacy while enabling  cross-modal retrieval."
 thumb: "/images/publications/PPVIREID.png"
 paperurl:
 projecturl: "https://github.com/Dige945/PPA_CVPR26"

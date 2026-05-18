@@ -1,9 +1,19 @@
 .lvmin-home,
 .page--home {
+  color: #333;
   background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
   .masthead {
     display: none;
+  }
+
+  a {
+    color: #06c;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
+    border-bottom: 0;
   }
 
   #main {
@@ -25,12 +35,18 @@
   }
 
   .page__content {
+    color: #333;
     font-size: 15px;
     line-height: 1.55;
+
+    p {
+      margin: 1em 0;
+    }
 
     p,
     li,
     dl {
+      color: #333;
       font-size: 15px;
       line-height: 1.55;
     }
@@ -81,7 +97,7 @@
     width: 100%;
     margin-top: 2.2rem;
     margin-bottom: 0;
-    color: var(--global-text-color-light);
+    color: #6a6a6a;
     font-size: 0.9rem;
     font-style: italic;
     text-align: center;
@@ -93,7 +109,7 @@
 
   hr {
     margin: 2.25rem 0;
-    border-top-color: #d8d8d8;
+    border-top: 1px solid #d8d8d8;
   }
 
   .home-news-item {
@@ -150,7 +166,8 @@
   }
 
   .home-publication__title {
-    color: var(--global-text-color);
+    margin: 0 0 0.25rem;
+    color: #333;
     font-size: 1.15rem;
     font-weight: 700;
     line-height: 1.5;
@@ -171,7 +188,7 @@
 
   .home-publication__links a + a::before {
     content: " / ";
-    color: var(--global-text-color-light);
+    color: #6a6a6a;
   }
 
   .home-misc__group {

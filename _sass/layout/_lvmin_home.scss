@@ -7,7 +7,7 @@
   }
 
   #main {
-    max-width: 1320px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 0 2rem;
   }
@@ -130,8 +130,8 @@
 
   .home-publication {
     display: grid;
-    grid-template-columns: 400px minmax(0, 1fr);
-    gap: 2rem;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 1.6rem;
     align-items: start;
     margin: 0 0 5.8rem;
   }
@@ -165,6 +165,19 @@
   .home-publication__links a + a::before {
     content: " / ";
     color: var(--global-text-color-light);
+  }
+
+  .home-misc__group {
+    margin: 0.9rem 0;
+  }
+
+  .home-misc__group ul {
+    margin: 0.35rem 0 0;
+    padding-left: 1.2rem;
+  }
+
+  .home-misc__group li {
+    margin: 0.15rem 0;
   }
 }
 

@@ -10,15 +10,15 @@ redirect_from:
 ---
 
 <figure class="home-figure">
-  <img src="{{ '/images/profile.png' | relative_url }}" alt="Yudi Xie">
-  <figcaption><strong>Figure 1.</strong> Yudi Xie.</figcaption>
+  <img src="{{ '/images/profile.jpg' | relative_url }}" alt="Yudi Xie at an orienteering competition with teammates">
+  <figcaption><strong>Figure 1.</strong> Orienteering with my lovely team family. I am second from the right.</figcaption>
 </figure>
 
 Hi, I am **Yudi Xie** (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. [Mang Ye](https://marswhu.github.io/).
 
-My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI. I am particularly interested in trustworthy visual recognition, privacy-preserving person re-identification, and multimodal representation learning.
+My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
 
-xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Google Scholar](https://scholar.google.com/citations?user=PS_CX0AAAAAJ)
+xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945)
 
 ---
 
@@ -44,4 +44,39 @@ xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Google Scholar](
 
 ---
 
-Miscs: Orienteering, computer competitions, scholarships, selected awards, and campus activities.
+Miscs:
+
+<div class="home-misc">
+  <div class="home-misc__group">
+    <strong>Orienteering.</strong>
+    <ul>
+      <li>1st Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Team-Race</li>
+      <li>4th Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Relay Race</li>
+      <li>2nd Place, 2023 Hubei Provincial Orienteering Championship, Middle Distance Race</li>
+      <li>2nd Place, 2024 Hubei Provincial Orienteering and Radio Direction Finding Championship, Orienteering Elite Group Team</li>
+      <li>6th Place, 2025 Hubei Provincial Orienteering and Radio Direction Finding Championship, 144MHz Radio Direction Finding</li>
+      <li>1st Place, Wuhan University Campus Orienteering Challenge, Professional Group</li>
+    </ul>
+  </div>
+
+  <div class="home-misc__group">
+    <strong>Computer Competitions.</strong>
+    <ul>
+      <li>First Prize, China University Computer Design Competition, South Central Region</li>
+      <li>First Prize, "Huazhong Cup" University Mathematical Modeling Challenge</li>
+      <li>First Prize, The Chinese Mathematics Competitions for College Students</li>
+    </ul>
+  </div>
+
+  <div class="home-misc__group">
+    <strong>Honors.</strong>
+    <ul>
+      <li>2023-2024 National Scholarship</li>
+      <li>2024-2025 National Scholarship</li>
+      <li>First-Class Scholarship of Wuhan University</li>
+      <li>Lei Jun Computer Innovation and Development Fund</li>
+      <li>Wuhan University "Advanced Individual in Sports"</li>
+      <li>Wuhan University "Activist in Social Activities"</li>
+    </ul>
+  </div>
+</div>

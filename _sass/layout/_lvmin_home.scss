@@ -1,9 +1,23 @@
 .lvmin-home,
 .page--home {
-  max-width: 880px;
+  background: #fff;
+
+  .masthead {
+    display: none;
+  }
+
+  #main {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
 
   .page {
-    max-width: 880px;
+    width: 100%;
+    max-width: none;
+    float: none;
+    margin: 0 auto;
+    padding: 0;
   }
 
   .page__title {
@@ -41,23 +55,38 @@
     }
   }
 
+  .page__inner-wrap {
+    width: 100%;
+  }
+
   .home-figure {
-    margin: 0 0 1rem;
+    margin: 7.5rem auto 4.8rem;
+    text-align: center;
   }
 
   .home-figure img {
-    width: min(100%, 720px);
+    width: min(100%, 390px);
     display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
   }
 
   .home-figure figcaption {
-    margin-top: 0.35rem;
+    margin-top: 2.2rem;
     color: var(--global-text-color-light);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  .home-figure figcaption strong {
+    font-weight: 700;
   }
 
   hr {
-    margin: 1.15rem 0;
+    margin: 2.25rem 0;
+    border-top-color: #d8d8d8;
   }
 
   .home-news-item {
@@ -70,21 +99,54 @@
     font-weight: 600;
   }
 
+  .home-show-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 1.2rem auto 4.25rem;
+    padding: 0.65rem 1.35rem;
+    color: #666;
+    background: #fafafa;
+    border: 1px solid #e6e9ec;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: default;
+  }
+
+  .home-show-all__box {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #d8dde2;
+    border-radius: 3px;
+    background: #fff;
+  }
+
+  .page__content > .home-show-all {
+    display: flex;
+    width: max-content;
+  }
+
   .home-publication {
     display: grid;
-    grid-template-columns: 180px minmax(0, 1fr);
-    gap: 1rem;
-    margin: 1.1rem 0;
+    grid-template-columns: 400px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+    margin: 0 0 5.8rem;
   }
 
   .home-publication__thumb img {
     width: 100%;
     display: block;
+    border-radius: 4px;
   }
 
   .home-publication__title {
     color: var(--global-text-color);
+    font-size: 1.15rem;
     font-weight: 700;
+    line-height: 1.5;
   }
 
   .home-publication__venue,
@@ -92,7 +154,7 @@
   .home-publication__excerpt,
   .home-publication__links {
     margin: 0.2rem 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.45;
   }
 
@@ -109,12 +171,27 @@
 @media (max-width: 640px) {
   .lvmin-home,
   .page--home {
+    #main {
+      padding: 0 1rem;
+    }
+
+    .home-figure {
+      margin-top: 3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .home-figure img {
+      width: min(100%, 280px);
+    }
+
     .home-publication {
       grid-template-columns: 1fr;
+      gap: 0.9rem;
+      margin-bottom: 3rem;
     }
 
     .home-publication__thumb {
-      max-width: 220px;
+      max-width: 100%;
     }
 
     .home-news-date {

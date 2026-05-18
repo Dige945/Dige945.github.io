@@ -11,7 +11,7 @@ redirect_from:
 
 <figure class="home-figure">
   <img src="{{ '/images/profile.png' | relative_url }}" alt="Yudi Xie">
-  <figcaption>Figure 1. Yudi Xie.</figcaption>
+  <figcaption><strong>Figure 1.</strong> Yudi Xie.</figcaption>
 </figure>
 
 Hi, I am **Yudi Xie** (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. [Mang Ye](https://marswhu.github.io/).
@@ -31,6 +31,11 @@ xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Google Scholar](
 {% endfor %}
 
 ---
+
+<button class="home-show-all" type="button" data-show-all-publications>
+  <span class="home-show-all__box" aria-hidden="true"></span>
+  <span>Show all works</span>
+</button>
 
 {% assign pubs = site.publications | sort: "date" | reverse %}
 {% for post in pubs %}

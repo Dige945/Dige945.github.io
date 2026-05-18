@@ -1,6 +1,6 @@
 {% assign post = include.post %}
 {% assign publication_url = post.projecturl | default: post.paperurl | default: post.url %}
-<article class="home-publication{% if include.index > 8 %} is-extra{% endif %}">
+<article class="home-publication{% unless post.featured %} is-extra{% endunless %}">
   {% if post.thumb %}
     <a class="home-publication__thumb" href="{% if publication_url contains '://' %}{{ publication_url }}{% else %}{{ publication_url | relative_url }}{% endif %}">
       <img src="{{ post.thumb | relative_url }}" alt="{{ post.title }} thumbnail">

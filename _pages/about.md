@@ -32,7 +32,7 @@ xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Blog]({{ '/blog/
 
 ---
 
-<button class="home-show-all" type="button" data-show-all-publications>
+<button class="home-show-all" type="button" data-show-all-publications aria-pressed="false">
   <span class="home-show-all__box" aria-hidden="true"></span>
   <span>Show all works</span>
 </button>

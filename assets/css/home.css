@@ -113,7 +113,23 @@ hr {
   font: inherit;
   font-size: 1rem;
   line-height: 1;
-  cursor: default;
+  cursor: pointer;
+}
+
+.home-show-all:hover {
+  border-color: #d2d7dc;
+  background: #f5f5f5;
+}
+
+.home-show-all.is-active .home-show-all__box::after {
+  content: "";
+  display: block;
+  width: 0.45rem;
+  height: 0.72rem;
+  margin: 0.03rem auto 0;
+  border: solid #666;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .home-show-all__box {
@@ -130,6 +146,14 @@ hr {
   gap: 1.4rem;
   align-items: start;
   margin: 0 0 5.8rem;
+}
+
+.home-publication.is-extra {
+  display: none;
+}
+
+body.show-all-publications .home-publication.is-extra {
+  display: grid;
 }
 
 .home-publication__thumb img {

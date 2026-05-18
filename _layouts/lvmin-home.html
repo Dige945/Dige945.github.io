@@ -10,6 +10,8 @@ layout: compress
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.title and page.title != "" %}{{ page.title }} - {% endif %}{{ site.title | default: site.name }}</title>
     <meta name="description" content="{{ site.description | default: site.name | strip_html | strip_newlines | escape }}">
+    <link rel="icon" type="image/jpeg" href="{{ '/images/profile.jpg' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/images/profile.jpg' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
   </head>
   <body>

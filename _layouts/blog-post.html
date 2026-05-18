@@ -14,8 +14,10 @@ layout: compress
       <script>
         window.MathJax = {
           tex: {
+            processEscapes: true,
             inlineMath: [['$', '$'], ['\\(', '\\)']],
-            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
           }
         };
       </script>

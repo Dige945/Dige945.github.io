@@ -5,7 +5,7 @@ tags: ML
 mathjax: true
 ---
 Look at this J funciton:
-$$J(\vec{w},b)=\frac{1}{2m}\sum^m_{i=1}(f_{\vec{m},b}\vec({x}^{(i)})-y^{(i)})^2+\frac{\lambda}{2m}\sum^n_{j=1}w^2_j$$
+$$J(\vec{w},b)=\frac{1}{2m}\sum^m_{i=1}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2+\frac{\lambda}{2m}\sum^n_{j=1}w^2_j$$
 
 it makes unacceptably large errors in predictions.
 

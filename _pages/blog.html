@@ -1,0 +1,26 @@
+---
+permalink: /blog/
+title: "Blog"
+layout: blog-list
+---
+
+<nav class="blog-back"><a href="{{ '/' | relative_url }}">Home</a></nav>
+
+<header class="blog-index-header">
+  <h1>Blog</h1>
+</header>
+
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in posts_by_year %}
+  <section class="blog-year">
+    <h2>{{ year.name }}</h2>
+    <div class="blog-list">
+      {% for post in year.items %}
+        <article class="blog-list-item">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}

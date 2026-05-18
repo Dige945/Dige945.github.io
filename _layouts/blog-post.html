@@ -1,0 +1,31 @@
+---
+layout: compress
+---
+
+<!doctype html>
+<html lang="{{ site.locale | default: 'en-US' | slice: 0, 2 }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} - {{ site.title | default: site.name }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+  </head>
+  <body>
+    <main class="home-shell blog-shell" role="main">
+      <nav class="blog-back"><a href="{{ '/blog/' | relative_url }}">Blog</a> / <a href="{{ '/' | relative_url }}">Home</a></nav>
+      <article class="blog-post">
+        <header class="blog-post__header">
+          <h1>{{ page.title }}</h1>
+          {% if page.date %}
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+          {% endif %}
+        </header>
+
+        <div class="blog-post__content">
+          {{ content }}
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

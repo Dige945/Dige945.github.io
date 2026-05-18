@@ -1,7 +1,7 @@
 ---
 permalink: /
 title: ""
-layout: single
+layout: lvmin-home
 author_profile: false
 classes: wide lvmin-home
 redirect_from:
@@ -18,7 +18,7 @@ Hi, I am **Yudi Xie** (谢宇迪), a third-year undergraduate student in Softwar
 
 My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
 
-xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945)
+xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Blog]({{ '/blog/' | relative_url }})
 
 ---
 

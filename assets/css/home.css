@@ -204,23 +204,42 @@ body.show-all-publications .home-publication.is-extra {
 
 .home-footer {
   width: min(100% - 4rem, 920px);
-  margin: 3rem auto 2rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--home-rule);
+  margin: 3.5rem auto 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(216, 216, 216, 0.72);
   color: var(--home-muted);
   font-size: 0.9rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 .home-footer__stats {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
   align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  padding: 0.45rem 0.8rem;
+  color: #777;
+  background: #fafafa;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+}
+
+.home-footer__stats strong {
+  color: var(--home-text);
+  font-weight: 600;
+}
+
+.home-footer__label {
+  color: #8a8a8a;
 }
 
 .home-footer__separator {
-  color: var(--home-rule);
+  width: 1px;
+  height: 0.9rem;
+  margin: 0 0.25rem;
+  background: var(--home-rule);
 }
 
 .blog-shell {

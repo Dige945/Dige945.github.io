@@ -12,7 +12,7 @@ authors: "Yudi Xie, Zhongao Zhou, Bin Yang&dagger;, Zhenghan Chen, Mang Ye&dagge
 bold_author: "Yudi Xie"
 excerpt: "This work studies privacy-preserving visible-infrared person re-identification through cross-modal preservation, consistency, and alignment, aiming to preserve privacy while enabling  cross-modal retrieval."
 thumb: "/images/publications/PPVIREID.png"
-paperurl:
+paperurl: "https://openaccess.thecvf.com/content/CVPR2026/papers/Xie_Towards_Cross-Modal_Preservation_Consistency_and_Alignment_for_Privacy-Preserving_Visible-Infrared_Person_CVPR_2026_paper.pdf"
 projecturl: "https://github.com/Dige945/PPA_CVPR26"
 codeurl:
 bibtexurl:

@@ -104,13 +104,25 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #fbfbfb 0%, #f4f4f4 100%);
-  border: 1px solid #ececec;
+  background: #f6f6f6;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 6px;
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
   opacity: 0.42;
   transition: opacity 360ms ease, filter 360ms ease;
   backface-visibility: hidden;
+}
+
+.home-figure-slide::before {
+  content: "";
+  position: absolute;
+  inset: -1.2rem;
+  background-image: var(--figure-bg);
+  background-position: center;
+  background-size: cover;
+  filter: blur(18px) saturate(1.05);
+  opacity: 0.42;
+  transform: scale(1.06);
 }
 
 .home-figure-slide.is-active {
@@ -119,6 +131,8 @@ hr {
 }
 
 .home-figure-slide img {
+  position: relative;
+  z-index: 1;
   max-width: 100%;
   max-height: 100%;
   width: auto;

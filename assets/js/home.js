@@ -26,6 +26,12 @@ if (figureCarousel) {
     const step = 360 / slides.length;
 
     slides.forEach((slide, index) => {
+      const image = slide.querySelector("img");
+
+      if (image) {
+        slide.style.setProperty("--figure-bg", `url("${image.currentSrc || image.src}")`);
+      }
+
       slide.style.transform = `rotateY(${index * step}deg) translateZ(var(--figure-radius))`;
       slide.classList.toggle("is-active", index === activeIndex);
       slide.setAttribute("aria-hidden", String(index !== activeIndex));

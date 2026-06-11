@@ -9,10 +9,35 @@ redirect_from:
   - /about.html
 ---
 
-<figure class="home-figure">
-  <img src="{{ '/images/profile.jpg' | relative_url }}" alt="Yudi Xie at an orienteering competition with teammates">
-  <figcaption><strong>Figure 1.</strong> Orienteering with my lovely team family. I am second from the right.</figcaption>
-</figure>
+<section class="home-figure-carousel" aria-label="Homepage figures" data-figure-carousel>
+  <button class="home-figure-carousel__button home-figure-carousel__button--prev" type="button" aria-label="Previous figure" data-figure-prev>
+    <span aria-hidden="true">&#8249;</span>
+  </button>
+
+  <figure class="home-figure">
+    <div class="home-figure-cylinder" data-figure-cylinder>
+      <div class="home-figure-slide is-active" data-figure-slide>
+        <img src="{{ '/images/profile.jpg' | relative_url }}" alt="Yudi Xie at an orienteering competition with teammates">
+      </div>
+      <div class="home-figure-slide" data-figure-slide>
+        <img src="{{ '/images/profile2.jpg' | relative_url }}" alt="Yudi Xie holding a compass">
+      </div>
+    </div>
+
+    <figcaption data-figure-caption>
+      <strong>Figure 1.</strong> Orienteering with my lovely team family. I am second from the right.
+    </figcaption>
+  </figure>
+
+  <button class="home-figure-carousel__button home-figure-carousel__button--next" type="button" aria-label="Next figure" data-figure-next>
+    <span aria-hidden="true">&#8250;</span>
+  </button>
+
+  <div class="home-figure-captions" hidden>
+    <span data-figure-caption-text><strong>Figure 1.</strong> Orienteering with my lovely team family. I am second from the right.</span>
+    <span data-figure-caption-text><strong>Figure 2.</strong> Thanks to my school for taking this photo. I am holding a compass.</span>
+  </div>
+</section>
 
 Hi, I am **Yudi Xie** (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. [Mang Ye](https://marswhu.github.io/).
 

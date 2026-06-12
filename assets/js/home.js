@@ -61,3 +61,17 @@ if (figureCarousel) {
 
   updateFigureCarousel(activeIndex);
 }
+
+const visitorStats = document.querySelector(".home-footer__stats");
+
+if (visitorStats) {
+  window.setTimeout(() => {
+    const values = visitorStats.querySelectorAll("#busuanzi_value_site_uv, #busuanzi_value_site_pv");
+
+    values.forEach((value) => {
+      if (!value.textContent.trim() || value.textContent.trim() === "...") {
+        value.textContent = "Unavailable";
+      }
+    });
+  }, 5000);
+}

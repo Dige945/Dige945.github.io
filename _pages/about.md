@@ -88,6 +88,7 @@ Miscs:
     <strong>Computer Competitions.</strong>
     <ul>
       <li>First Prize, China University Computer Design Competition, South Central Region</li>
+      <li>Second Prize, National College Student Software Innovation Competition, South China Region</li>
       <li>First Prize, "Huazhong Cup" University Mathematical Modeling Challenge</li>
       <li>First Prize, The Chinese Mathematics Competitions for College Students</li>
     </ul>

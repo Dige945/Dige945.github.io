@@ -43,6 +43,8 @@ Hi, I am **Yudi Xie** (谢宇迪), a third-year undergraduate student in Softwar
 
 My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
 
+Beyond research, I enjoy orienteering, filming vlogs, marathon running, photography, geocaching, fingerstyle guitar, table tennis, singing, and more.
+
 xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Blog]({{ '/blog/' | relative_url }})
 
 ---
@@ -73,18 +75,6 @@ Miscs:
 
 <div class="home-misc">
   <div class="home-misc__group">
-    <strong>Orienteering.</strong>
-    <ul>
-      <li>1st Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Team-Race</li>
-      <li>4th Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Relay Race</li>
-      <li>2nd Place, 2023 Hubei Provincial Orienteering Championship, Middle Distance Race</li>
-      <li>2nd Place, 2024 Hubei Provincial Orienteering and Radio Direction Finding Championship, Orienteering Elite Group Team</li>
-      <li>6th Place, 2025 Hubei Provincial Orienteering and Radio Direction Finding Championship, 144MHz Radio Direction Finding</li>
-      <li>1st Place, Wuhan University Campus Orienteering Challenge, Professional Group</li>
-    </ul>
-  </div>
-
-  <div class="home-misc__group">
     <strong>Computer Competitions.</strong>
     <ul>
       <li>First Prize, China University Computer Design Competition, South Central Region</li>
@@ -104,6 +94,27 @@ Miscs:
       <li>Lei Jun Computer Innovation and Development Fund</li>
       <li>Wuhan University "Advanced Individual in Sports"</li>
       <li>Wuhan University "Activist in Social Activities"</li>
+    </ul>
+  </div>
+
+  <div class="home-misc__group">
+    <strong>Orienteering.</strong>
+    <ul>
+      <li>1st Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Team-Race</li>
+      <li>4th Place, 2024 Hubei Provincial University Orienteering Championship, Men's Group Relay Race</li>
+      <li>2nd Place, 2023 Hubei Provincial Orienteering Championship, Middle Distance Race</li>
+      <li>2nd Place, 2024 Hubei Provincial Orienteering and Radio Direction Finding Championship, Orienteering Elite Group Team</li>
+      <li>6th Place, 2025 Hubei Provincial Orienteering and Radio Direction Finding Championship, 144MHz Radio Direction Finding</li>
+      <li>1st Place, Wuhan University Campus Orienteering Challenge, Professional Group</li>
+    </ul>
+  </div>
+
+  <div class="home-misc__group">
+    <strong>Sports Performances.</strong>
+    <ul>
+      <li>1 km PB: 3:03</li>
+      <li>5 km PB: 19:47</li>
+      <li>Half Marathon PB: 1:30:39</li>
     </ul>
   </div>
 </div>

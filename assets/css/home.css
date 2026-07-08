@@ -440,11 +440,20 @@ body.show-all-publications .home-publication.is-extra {
   line-height: 1.28;
 }
 
+.music-album h2 span {
+  color: var(--home-muted);
+  font-weight: 600;
+}
+
 .music-album__meta {
   margin: 0.45rem 0 0.95rem;
   color: var(--home-muted);
   font-size: 0.92rem;
   line-height: 1.45;
+}
+
+.music-album__copy p {
+  margin: 0.6rem 0;
 }
 
 .music-album__tracks {

@@ -45,7 +45,7 @@ My research interests focus on Computer Vision, Multi-Modal Learning, and Genera
 
 Beyond research, I enjoy orienteering, filming vlogs, marathon running, photography, geocaching, fingerstyle guitar, table tennis, singing, and more.
 
-xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Blog]({{ '/blog/' | relative_url }})
+xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Blog]({{ '/blog/' | relative_url }}) / [Music]({{ '/music/' | relative_url }})
 
 ---
 

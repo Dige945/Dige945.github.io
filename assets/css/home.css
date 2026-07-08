@@ -456,6 +456,15 @@ body.show-all-publications .home-publication.is-extra {
   margin: 0.6rem 0;
 }
 
+.music-album__copy-en {
+  color: var(--home-text);
+}
+
+.music-album__copy-zh {
+  color: var(--home-muted);
+  font-size: 0.94rem;
+}
+
 .music-album__tracks {
   margin-bottom: 0;
 }

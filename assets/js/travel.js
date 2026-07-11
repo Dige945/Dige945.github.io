@@ -75,6 +75,7 @@
 
   const globeHost = page.querySelector("[data-travel-globe]");
   const status = page.querySelector("[data-travel-status]");
+  const imageWrap = page.querySelector(".travel-panel__image-wrap");
   const image = page.querySelector("[data-travel-image]");
   const imageNav = page.querySelector("[data-travel-image-nav]");
   const photoCount = page.querySelector("[data-travel-photo-count]");
@@ -154,6 +155,11 @@
 
   const entryFor = (key) => places[key] || null;
 
+  const setPanelImage = (source) => {
+    image.src = source;
+    imageWrap.style.setProperty("--travel-photo", `url("${source.replaceAll('"', '\\"')}")`);
+  };
+
   const nextUnexploredNote = () => {
     let index = Math.floor(Math.random() * unexploredNotes.length);
     if (unexploredNotes.length > 1 && index === lastUnexploredNote) {
@@ -181,7 +187,7 @@
         "Choose a country and let the map hold the rest of the thought.",
         "从一个坐标开始，剩下的故事留给下一次出发。"
       );
-      image.src = emptyImage;
+      setPanelImage(emptyImage);
       image.alt = "A mountain path disappearing into clouds";
       imageNav.hidden = true;
       return;
@@ -209,7 +215,7 @@
 
   const renderPhoto = () => {
     const hasPhotos = activePhotos.length > 0;
-    image.src = hasPhotos ? activePhotos[activePhotoIndex] : emptyImage;
+    setPanelImage(hasPhotos ? activePhotos[activePhotoIndex] : emptyImage);
     imageNav.hidden = activePhotos.length < 2;
     if (hasPhotos) photoCount.textContent = `${activePhotoIndex + 1} / ${activePhotos.length}`;
   };

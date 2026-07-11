@@ -580,7 +580,7 @@ body.show-all-publications .home-publication.is-extra {
 }
 
 .travel-globe__country.is-selected,
-.travel-globe__country.is-china,
+.travel-globe__country.is-china-highlighted,
 .travel-globe__province.is-selected {
   fill: #b9983e;
   stroke: #ebcf62;
@@ -719,11 +719,26 @@ body.show-all-publications .home-publication.is-extra {
   font-size: 0.92rem;
 }
 
-.travel-panel__note {
+.travel-panel__notes {
   margin: auto 0 0;
-  color: #464e54;
-  font-size: 0.96rem;
-  line-height: 1.65;
+}
+
+.travel-panel__note {
+  margin: 0;
+  line-height: 1.68;
+}
+
+.travel-panel__note--en {
+  color: #26323a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+}
+
+.travel-panel__note--zh {
+  margin-top: 0.75rem;
+  color: #778188;
+  font-family: "Noto Serif SC", "Songti SC", STSong, serif;
+  font-size: 0.93rem;
 }
 
 .blog-year {

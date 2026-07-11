@@ -6,12 +6,13 @@
   if (!page || !d3 || !topojson) return;
 
   // Add visited places here. A key may be `country:Japan` or `province:420000`.
-  // Each entry accepts title, meta, note, and any number of local photo paths.
+  // Each entry accepts title, meta, noteEn, noteZh, and any number of local photo paths.
   const places = {
     // "country:Japan": {
     //   title: "Japan",
     //   meta: "Spring 2026",
-    //   note: "A few lines about the trip.",
+    //   noteEn: "A few lines about the trip.",
+    //   noteZh: "几句留给这次旅行的话。",
     //   photos: ["/images/travel/japan-01.jpg", "/images/travel/japan-02.jpg"]
     // }
   };
@@ -24,7 +25,8 @@
   const panelState = page.querySelector("[data-travel-panel-state]");
   const panelTitle = page.querySelector("[data-travel-title]");
   const panelMeta = page.querySelector("[data-travel-meta]");
-  const panelNote = page.querySelector("[data-travel-note]");
+  const panelNoteEnglish = page.querySelector("[data-travel-note-en]");
+  const panelNoteChinese = page.querySelector("[data-travel-note-zh]");
   const controls = {
     zoomIn: page.querySelector("[data-travel-zoom-in]"),
     zoomOut: page.querySelector("[data-travel-zoom-out]"),
@@ -57,8 +59,58 @@
   let provincePaths;
   let boundaryPath;
   let globeCircle;
+  let lastUnexploredNote = -1;
+
+  const unexploredNotes = [
+    {
+      en: "The route has not reached here yet. For now, it remains a small bright absence on the map.",
+      zh: "这里还没有留下我的脚印，地图上先留一盏小灯，等某次临时起意把它点亮。"
+    },
+    {
+      en: "No photographs from here so far, only the pleasing possibility of arriving without knowing exactly what to expect.",
+      zh: "暂时没有照片，也没有攻略里那种笃定。也许正因为如此，它值得被放进下一次出发的备忘录。"
+    },
+    {
+      en: "This place is still outside my memory. I like that a blank coordinate can carry so much weather ahead of it.",
+      zh: "它还不在我的记忆里，但一块空白坐标也可以装下很多未发生的天气、路程和相遇。"
+    },
+    {
+      en: "The map knows the shape of this place before I do. One day, the outline may acquire a morning, a station, and a few blurred frames.",
+      zh: "地图比我先知道它的轮廓。等真正抵达以后，也许会多出一个清晨、一段站台广播和几张失焦的照片。"
+    },
+    {
+      en: "Nothing has been collected here yet. That leaves room for a slower visit, with no obligation to turn every stop into a record.",
+      zh: "这里暂时没有被收集成故事。以后去的时候，或许可以走慢一点，不急着把每一站都变成证明。"
+    },
+    {
+      en: "A future version of this page may remember a street corner from here. Until then, the empty space feels exactly right.",
+      zh: "也许未来的某一天，这里会对应一条街角、一顿晚饭或一次绕路。现在的留白，本身也很合适。"
+    },
+    {
+      en: "Still unvisited, still open. Some destinations are better kept as a question until the calendar finally makes room for them.",
+      zh: "还没有抵达，也仍然敞开。总有些地方适合先作为问题存在，等日历终于为它空出一格。"
+    },
+    {
+      en: "For now, this is a name at the edge of a possibility. The first photograph can wait for the journey that earns it.",
+      zh: "现在它只是可能性边缘的一个名字。第一张照片不必着急，等一段真正配得上的旅程再去按下快门。"
+    }
+  ];
 
   const entryFor = (key) => places[key] || null;
+
+  const nextUnexploredNote = () => {
+    let index = Math.floor(Math.random() * unexploredNotes.length);
+    if (unexploredNotes.length > 1 && index === lastUnexploredNote) {
+      index = (index + 1) % unexploredNotes.length;
+    }
+    lastUnexploredNote = index;
+    return unexploredNotes[index];
+  };
+
+  const setPanelNotes = (english, chinese) => {
+    panelNoteEnglish.textContent = english;
+    panelNoteChinese.textContent = chinese;
+  };
 
   const updatePanel = (item) => {
     const entry = item ? entryFor(item.key) : null;
@@ -69,7 +121,10 @@
       panelState.textContent = "Atlas";
       panelTitle.textContent = "Where next?";
       panelMeta.textContent = "One world, slowly unfolding.";
-      panelNote.textContent = "Choose a country and let the map hold the rest of the thought.";
+      setPanelNotes(
+        "Choose a country and let the map hold the rest of the thought.",
+        "从一个坐标开始，剩下的故事留给下一次出发。"
+      );
       image.src = emptyImage;
       image.alt = "A mountain path disappearing into clouds";
       imageNav.hidden = true;
@@ -81,11 +136,15 @@
 
     if (entry) {
       panelState.textContent = "Travel notes";
-      panelNote.textContent = entry.note || "A place worth returning to in memory.";
+      setPanelNotes(
+        entry.noteEn || "A place worth returning to in memory.",
+        entry.noteZh || "这段路已经被收进行囊，也值得在记忆里再走一遍。"
+      );
       image.alt = `${entry.title || item.name} travel photo`;
     } else {
       panelState.textContent = "Not yet";
-      panelNote.textContent = "This part of the map is still quiet. I hope a future route leaves behind a few photographs, a changed plan, and enough time to look around.";
+      const note = nextUnexploredNote();
+      setPanelNotes(note.en, note.zh);
       image.alt = "A mountain path disappearing into clouds";
     }
 
@@ -123,6 +182,7 @@
     globeHost.classList.toggle("is-china-mode", chinaMode);
     countryPaths
       .classed("is-china", isChina)
+      .classed("is-china-highlighted", (feature) => isChina(feature) && (!selected || selected.key === countryKey(feature)))
       .classed("is-visited", (feature) => Boolean(entryFor(countryKey(feature))))
       .classed("is-selected", (feature) => selected?.key === countryKey(feature));
     provincePaths

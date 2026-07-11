@@ -8,13 +8,69 @@
   // Add visited places here. A key may be `country:Japan` or `province:420000`.
   // Each entry accepts title, meta, noteEn, noteZh, and any number of local photo paths.
   const places = {
-    // "country:Japan": {
-    //   title: "Japan",
-    //   meta: "Spring 2026",
-    //   noteEn: "A few lines about the trip.",
-    //   noteZh: "几句留给这次旅行的话。",
-    //   photos: ["/images/travel/japan-01.jpg", "/images/travel/japan-02.jpg"]
-    // }
+    "province:320000": {
+      title: "Jiangsu",
+      meta: "China · 江苏",
+      noteEn: "Gardens, canals, and an unhurried light reflected on the water.",
+      noteZh: "园林、运河，还有落在水面上的缓慢光线。",
+      photos: ["/images/travel/江苏省.jpg"]
+    },
+    "province:330000": {
+      title: "Zhejiang",
+      meta: "China · 浙江",
+      noteEn: "A province of hills, rivers, and small turns that make a journey linger.",
+      noteZh: "山水之间总有小小的转弯，让一段行程自然停留得更久。",
+      photos: ["/images/travel/浙江省.jpg"]
+    },
+    "province:350000": {
+      title: "Fujian",
+      meta: "China · 福建",
+      noteEn: "The coast keeps its own time, between salt air, steep hills, and old lanes.",
+      noteZh: "海风、陡坡和旧巷共同保留着海岸独有的时间感。",
+      photos: ["/images/travel/福建省.jpg"]
+    },
+    "province:360000": {
+      title: "Jiangxi",
+      meta: "China · 江西",
+      noteEn: "Green mountains and quiet kilns make the landscape feel made for a long look.",
+      noteZh: "青山与窑火让这片风景适合被长久地注视。",
+      photos: ["/images/travel/江西省.jpg"]
+    },
+    "province:410000": {
+      title: "Henan",
+      meta: "China · 河南",
+      noteEn: "A broad plain where old capitals and ordinary streets share the same horizon.",
+      noteZh: "古都与寻常街巷一起铺开在辽阔的地平线上。",
+      photos: ["/images/travel/河南省.jpg"]
+    },
+    "province:420000": {
+      title: "Hubei",
+      meta: "China · 湖北",
+      noteEn: "Lakes, river crossings, and a city rhythm that always feels close to departure.",
+      noteZh: "湖泊、渡口和城市的节奏，总让人感觉下一程随时会开始。",
+      photos: ["/images/travel/湖北省.jpg"]
+    },
+    "province:430000": {
+      title: "Hunan",
+      meta: "China · 湖南",
+      noteEn: "Mist gathers in the hills, while the everyday world stays vivid and warm below.",
+      noteZh: "山间有雾，山下的日常却始终鲜明而热烈。",
+      photos: ["/images/travel/湖南省.jpg"]
+    },
+    "province:440000": {
+      title: "Guangdong",
+      meta: "China · 广东",
+      noteEn: "Markets, rain, and late dinners: a place that makes staying out feel natural.",
+      noteZh: "市集、雨水和深夜的晚饭，让人很自然地不想太早回去。",
+      photos: ["/images/travel/广东省.jpg"]
+    },
+    "province:510000": {
+      title: "Sichuan",
+      meta: "China · 四川",
+      noteEn: "Dense green, patient mountains, and the kind of table that turns an evening into a memory.",
+      noteZh: "浓绿、群山，还有一张能把夜晚变成记忆的餐桌。",
+      photos: ["/images/travel/四川省.jpg"]
+    }
   };
 
   const globeHost = page.querySelector("[data-travel-globe]");

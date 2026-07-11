@@ -580,7 +580,6 @@ body.show-all-publications .home-publication.is-extra {
 }
 
 .travel-globe__country.is-selected,
-.travel-globe__country.is-china-highlighted,
 .travel-globe__province.is-selected {
   fill: #b9983e;
   stroke: #ebcf62;

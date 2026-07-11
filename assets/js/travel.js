@@ -244,8 +244,7 @@
     globeHost.classList.toggle("is-china-mode", chinaMode);
     countryPaths
       .classed("is-china", isChina)
-      .classed("is-china-highlighted", (feature) => isChina(feature) && (!selected || selected.key === countryKey(feature)))
-      .classed("is-visited", (feature) => Boolean(entryFor(countryKey(feature))))
+      .classed("is-visited", (feature) => Boolean(entryFor(countryKey(feature))) || (isChina(feature) && provinces.some((province) => Boolean(entryFor(provinceKey(province))))))
       .classed("is-selected", (feature) => selected?.key === countryKey(feature));
     provincePaths
       .classed("is-visited", (feature) => Boolean(entryFor(provinceKey(feature))))

@@ -675,15 +675,15 @@ body.show-all-publications .home-publication.is-extra {
 .travel-panel__image-wrap::before {
   content: "";
   position: absolute;
-  z-index: -1;
-  inset: -1.25rem;
+  z-index: 0;
+  inset: -2rem;
   background-color: #17212a;
   background-image: var(--travel-photo);
   background-position: center;
   background-size: cover;
-  filter: blur(18px) saturate(0.82);
-  opacity: 0.62;
-  transform: scale(1.08);
+  filter: blur(24px) saturate(1.08) brightness(0.82);
+  opacity: 0.86;
+  transform: scale(1.12);
 }
 
 .travel-panel__image {
@@ -698,6 +698,7 @@ body.show-all-publications .home-publication.is-extra {
 
 .travel-panel__image-nav {
   position: absolute;
+  z-index: 2;
   right: 0.9rem;
   bottom: 0.85rem;
   left: 0.9rem;

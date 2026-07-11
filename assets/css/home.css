@@ -534,12 +534,6 @@ body.show-all-publications .home-publication.is-extra {
   pointer-events: none;
 }
 
-.travel-globe,
-.travel-province-map {
-  width: 100%;
-  height: 100%;
-}
-
 .travel-globe {
   height: 34rem;
   min-height: 0;
@@ -551,18 +545,70 @@ body.show-all-publications .home-publication.is-extra {
   cursor: grabbing;
 }
 
-.travel-globe canvas,
-.travel-province-map {
+.travel-globe svg {
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
-.travel-province-map {
-  height: 34rem;
-  min-height: 0;
-  cursor: pointer;
+.travel-globe__halo {
+  fill: none;
+  stroke: rgba(151, 171, 183, 0.2);
+  stroke-width: 8px;
 }
 
-.travel-province-map[hidden],
+.travel-globe__ocean {
+  fill: #0d1721;
+}
+
+.travel-globe__graticule {
+  fill: none;
+  stroke: rgba(131, 151, 164, 0.22);
+  stroke-width: 0.8px;
+}
+
+.travel-globe__country {
+  fill: #1a2a36;
+  stroke: rgba(118, 137, 148, 0.65);
+  stroke-width: 0.9px;
+  transition: fill 160ms ease, opacity 220ms ease;
+}
+
+.travel-globe__country.is-visited,
+.travel-globe__province.is-visited {
+  fill: #3e6964;
+}
+
+.travel-globe__country.is-selected,
+.travel-globe__country.is-china,
+.travel-globe__province.is-selected {
+  fill: #b9983e;
+  stroke: #ebcf62;
+  stroke-width: 1.45px;
+}
+
+.travel-globe__boundary {
+  fill: none;
+  stroke: rgba(164, 181, 190, 0.52);
+  stroke-width: 0.7px;
+  pointer-events: none;
+}
+
+.travel-globe__provinces {
+  pointer-events: none;
+}
+
+.travel-globe__province {
+  fill: #1a2a36;
+  stroke: rgba(164, 181, 190, 0.78);
+  stroke-width: 0.9px;
+}
+
+.travel-globe.is-china-mode .travel-globe__country:not(.is-china),
+.travel-globe.is-china-mode .travel-globe__boundary {
+  opacity: 0;
+}
+
 .travel-panel__image-nav[hidden] {
   display: none;
 }
@@ -814,8 +860,7 @@ body.show-all-publications .home-publication.is-extra {
   }
 
   .travel-map,
-  .travel-globe,
-  .travel-province-map {
+  .travel-globe {
     height: 24rem;
     min-height: 24rem;
   }

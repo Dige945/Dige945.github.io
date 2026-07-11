@@ -17,7 +17,6 @@ layout: blog-list
     <section class="travel-map" aria-label="Interactive travel globe">
       <div class="travel-map__status" aria-live="polite" data-travel-status>Loading atlas</div>
       <div class="travel-globe" data-travel-globe></div>
-      <canvas class="travel-province-map" data-travel-province-map aria-label="Map of China's provinces" hidden></canvas>
 
       <div class="travel-map__controls" aria-label="Globe controls">
         <button class="travel-icon-button" type="button" aria-label="Zoom out" title="Zoom out" data-travel-zoom-out>&minus;</button>
@@ -47,4 +46,4 @@ layout: blog-list
 
 <script src="{{ '/assets/vendor/topojson-client.min.js' | relative_url }}"></script>
 <script src="{{ '/assets/vendor/d3.min.js' | relative_url }}"></script>
-<script type="module" src="{{ '/assets/js/travel.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/travel.js' | relative_url }}"></script>

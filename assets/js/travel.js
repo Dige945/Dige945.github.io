@@ -1,15 +1,9 @@
-import * as THREE from "../vendor/three.module.js";
-
 (() => {
   const page = document.querySelector("[data-travel-page]");
   const d3 = window.d3;
   const topojson = window.topojson;
 
-  if (!page || !topojson || !d3) return;
-
-  const root = document.documentElement;
-  const baseUrl = root.dataset.baseurl || "";
-  const emptyImage = `${baseUrl}/images/travel-empty.jpg`;
+  if (!page || !d3 || !topojson) return;
 
   // Add visited places here. A key may be `country:Japan` or `province:420000`.
   // Each entry accepts title, meta, note, and any number of local photo paths.
@@ -23,7 +17,6 @@ import * as THREE from "../vendor/three.module.js";
   };
 
   const globeHost = page.querySelector("[data-travel-globe]");
-  const provinceCanvas = page.querySelector("[data-travel-province-map]");
   const status = page.querySelector("[data-travel-status]");
   const image = page.querySelector("[data-travel-image]");
   const imageNav = page.querySelector("[data-travel-image-nav]");
@@ -40,29 +33,30 @@ import * as THREE from "../vendor/three.module.js";
     photoNext: page.querySelector("[data-travel-photo-next]")
   };
 
+  const emptyImage = image.currentSrc || image.src;
+  const dataUrl = (file) => new URL(`../data/${file}`, document.currentScript.src).href;
+  const width = 720;
+  const height = 640;
+  const baseScale = 278;
+  const chinaDetailZoom = 1.55;
+  const defaultRotation = [-112, -23, 0];
+
   let countries = [];
   let provinces = [];
   let selected = null;
-  let displayMode = "world";
   let activePhotos = [];
   let activePhotoIndex = 0;
-  let scene;
-  let camera;
-  let renderer;
-  let globe;
-  let mapTexture;
-  let globeGroup;
-  let globeCanvas;
-  let provinceProjection;
-  let dragStart;
-  let isDragging = false;
-  let lastPointer = { x: 0, y: 0 };
-  let idleFrames = 0;
-
-  const coordinatesFromUv = (uv) => [
-    uv.x * 360 - 180,
-    (uv.y - 0.5) * 180
-  ];
+  let globeZoom = 1;
+  let chinaMode = false;
+  let dragging = false;
+  let didDrag = false;
+  let svg;
+  let projection;
+  let path;
+  let countryPaths;
+  let provincePaths;
+  let boundaryPath;
+  let globeCircle;
 
   const entryFor = (key) => places[key] || null;
 
@@ -75,7 +69,7 @@ import * as THREE from "../vendor/three.module.js";
       panelState.textContent = "Atlas";
       panelTitle.textContent = "Where next?";
       panelMeta.textContent = "One world, slowly unfolding.";
-      panelNote.textContent = "Select a country to open a new page in the atlas.";
+      panelNote.textContent = "Choose a country and let the map hold the rest of the thought.";
       image.src = emptyImage;
       image.alt = "A mountain path disappearing into clouds";
       imageNav.hidden = true;
@@ -91,7 +85,7 @@ import * as THREE from "../vendor/three.module.js";
       image.alt = `${entry.title || item.name} travel photo`;
     } else {
       panelState.textContent = "Not yet";
-      panelNote.textContent = "This corner of the map is still unmarked. I hope a future journey returns with a few imperfect frames and plenty of time to linger.";
+      panelNote.textContent = "This part of the map is still quiet. I hope a future route leaves behind a few photographs, a changed plan, and enough time to look around.";
       image.alt = "A mountain path disappearing into clouds";
     }
 
@@ -102,227 +96,202 @@ import * as THREE from "../vendor/three.module.js";
     const hasPhotos = activePhotos.length > 0;
     image.src = hasPhotos ? activePhotos[activePhotoIndex] : emptyImage;
     imageNav.hidden = activePhotos.length < 2;
-
-    if (hasPhotos) {
-      photoCount.textContent = `${activePhotoIndex + 1} / ${activePhotos.length}`;
-    }
+    if (hasPhotos) photoCount.textContent = `${activePhotoIndex + 1} / ${activePhotos.length}`;
   };
 
-  const drawMapTexture = () => {
-    if (!globeCanvas || !mapTexture) return;
+  const isChina = (feature) => feature?.id === "156" || feature?.properties?.name === "China";
+  const countryKey = (feature) => `country:${feature.properties.name}`;
+  const provinceKey = (feature) => `province:${feature.properties.adcode}`;
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-    const context = globeCanvas.getContext("2d");
-    const width = globeCanvas.width;
-    const height = globeCanvas.height;
-    const projection = d3.geoEquirectangular().fitSize([width, height], { type: "Sphere" });
-    const path = d3.geoPath(projection, context);
+  const reverseProvinceRings = (geometry) => {
+    if (!geometry) return geometry;
+    const reverseRing = (ring) => ring.map(([longitude, latitude]) => [longitude, latitude]).reverse();
 
-    context.fillStyle = "#0d1721";
-    context.fillRect(0, 0, width, height);
-
-    countries.forEach((feature) => {
-      const isSelected = selected?.key === `country:${feature.properties.name}`;
-      context.beginPath();
-      path(feature);
-      context.fillStyle = isSelected ? "#b9983e" : "#1b2a36";
-      context.fill();
-      context.strokeStyle = isSelected ? "#dfc35a" : "#64717a";
-      context.lineWidth = isSelected ? 1.6 : 0.72;
-      context.stroke();
-    });
-
-    for (let latitude = -60; latitude <= 60; latitude += 30) {
-      context.beginPath();
-      path({ type: "LineString", coordinates: Array.from({ length: 73 }, (_, index) => [-180 + index * 5, latitude]) });
-      context.strokeStyle = "rgba(130, 151, 165, 0.24)";
-      context.lineWidth = 0.7;
-      context.stroke();
+    if (geometry.type === "Polygon") {
+      return { ...geometry, coordinates: geometry.coordinates.map(reverseRing) };
     }
 
-    mapTexture.needsUpdate = true;
+    if (geometry.type === "MultiPolygon") {
+      return { ...geometry, coordinates: geometry.coordinates.map((polygon) => polygon.map(reverseRing)) };
+    }
+
+    return geometry;
   };
 
-  const drawProvinceMap = () => {
-    if (displayMode !== "china" || !provinces.length) return;
+  const updateMapClasses = () => {
+    globeHost.classList.toggle("is-china-mode", chinaMode);
+    countryPaths
+      .classed("is-china", isChina)
+      .classed("is-visited", (feature) => Boolean(entryFor(countryKey(feature))))
+      .classed("is-selected", (feature) => selected?.key === countryKey(feature));
+    provincePaths
+      .classed("is-visited", (feature) => Boolean(entryFor(provinceKey(feature))))
+      .classed("is-selected", (feature) => selected?.key === provinceKey(feature));
+  };
 
-    const rect = provinceCanvas.getBoundingClientRect();
-    const scale = Math.min(window.devicePixelRatio || 1, 2);
-    provinceCanvas.width = Math.max(1, Math.round(rect.width * scale));
-    provinceCanvas.height = Math.max(1, Math.round(rect.height * scale));
-    const context = provinceCanvas.getContext("2d");
-    context.scale(scale, scale);
-    context.fillStyle = "#0d1721";
-    context.fillRect(0, 0, rect.width, rect.height);
+  const render = () => {
+    projection.scale(baseScale * globeZoom);
+    const isChinaDetailVisible = chinaMode && globeZoom >= chinaDetailZoom;
+    globeCircle.attr("r", projection.scale());
+    svg.select(".travel-globe__ocean").attr("d", path({ type: "Sphere" }));
+    svg.select(".travel-globe__graticule").attr("d", path(d3.geoGraticule10()));
+    countryPaths.attr("d", path);
+    boundaryPath.attr("d", path);
+    provincePaths.attr("d", path).attr("display", isChinaDetailVisible ? null : "none");
+    updateMapClasses();
+  };
 
-    provinceProjection = d3.geoMercator().fitExtent([[26, 26], [rect.width - 26, rect.height - 26]], { type: "FeatureCollection", features: provinces });
-    const path = d3.geoPath(provinceProjection, context);
-
-    provinces.forEach((feature) => {
-      const key = `province:${feature.properties.adcode}`;
-      const isSelected = selected?.key === key;
-      const isVisited = Boolean(entryFor(key));
-      context.beginPath();
-      path(feature);
-      context.fillStyle = isSelected ? "#d6af35" : isVisited ? "#476b65" : "#1b2a36";
-      context.fill();
-      context.strokeStyle = isSelected ? "#f3d66a" : "#71808a";
-      context.lineWidth = isSelected ? 1.8 : 0.9;
-      context.stroke();
-    });
+  const focusCountry = (feature) => {
+    const center = isChina(feature) ? [104.2, 35.6] : d3.geoCentroid(feature);
+    projection.rotate([-center[0], -clamp(center[1], -58, 58), 0]);
+    globeZoom = isChina(feature) ? 1.7 : Math.max(globeZoom, 1.35);
+    render();
   };
 
   const selectCountry = (feature) => {
     if (!feature) return;
-
-    const name = feature.properties.name;
-    selected = { key: `country:${name}`, name, level: "country" };
-
-    if (name === "China") {
-      displayMode = "china";
-      globeHost.hidden = true;
-      provinceCanvas.hidden = false;
-      status.textContent = "China";
-      drawProvinceMap();
-    } else {
-      status.textContent = name;
-      drawMapTexture();
-    }
-
+    selected = { key: countryKey(feature), name: feature.properties.name, level: "country" };
+    chinaMode = isChina(feature);
+    status.textContent = feature.properties.name;
+    focusCountry(feature);
     updatePanel(selected);
   };
 
   const selectProvince = (feature) => {
     if (!feature) return;
-
-    selected = {
-      key: `province:${feature.properties.adcode}`,
-      name: feature.properties.name,
-      level: "province"
-    };
+    selected = { key: provinceKey(feature), name: feature.properties.name, level: "province" };
     status.textContent = feature.properties.name;
-    drawProvinceMap();
+    render();
     updatePanel(selected);
   };
 
-  const createGlobe = () => {
-    const width = globeHost.clientWidth;
-    const height = globeHost.clientHeight;
+  const featureAt = (position) => {
+    const lonLat = projection.invert(position);
+    if (!lonLat) return null;
 
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
-    camera.position.set(0, 0, 3.2);
+    if (chinaMode && globeZoom >= chinaDetailZoom) {
+      const province = provinces.find((feature) => d3.geoContains(feature, lonLat));
+      if (province) return { level: "province", feature: province };
+    }
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(width, height, false);
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    globeHost.appendChild(renderer.domElement);
-
-    globeCanvas = document.createElement("canvas");
-    globeCanvas.width = 1800;
-    globeCanvas.height = 900;
-    mapTexture = new THREE.CanvasTexture(globeCanvas);
-    mapTexture.colorSpace = THREE.SRGBColorSpace;
-
-    globeGroup = new THREE.Group();
-    scene.add(globeGroup);
-
-    globe = new THREE.Mesh(
-      new THREE.SphereGeometry(1, 96, 64),
-      new THREE.MeshBasicMaterial({ map: mapTexture })
-    );
-    globeGroup.add(globe);
-
-    const atmosphere = new THREE.Mesh(
-      new THREE.SphereGeometry(1.015, 96, 64),
-      new THREE.MeshBasicMaterial({ color: "#879da9", transparent: true, opacity: 0.1, side: THREE.BackSide })
-    );
-    globeGroup.add(atmosphere);
-    globeGroup.rotation.set(-0.16, 2.4, 0);
-
-    drawMapTexture();
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      if (!isDragging && idleFrames > 45 && displayMode === "world") globeGroup.rotation.y += 0.0014;
-      idleFrames += 1;
-      renderer.render(scene, camera);
-    };
-
-    animate();
+    const country = countries.find((feature) => d3.geoContains(feature, lonLat));
+    return country ? { level: "country", feature: country } : null;
   };
 
-  const countryAt = (event) => {
-    if (!renderer || !globe) return null;
-    const rect = renderer.domElement.getBoundingClientRect();
-    const pointer = new THREE.Vector2(
-      ((event.clientX - rect.left) / rect.width) * 2 - 1,
-      -((event.clientY - rect.top) / rect.height) * 2 + 1
-    );
-    const raycaster = new THREE.Raycaster();
-    raycaster.setFromCamera(pointer, camera);
-    const hit = raycaster.intersectObject(globe)[0];
-    if (!hit?.uv) return null;
-    const point = coordinatesFromUv(hit.uv);
-    return countries.find((feature) => d3.geoContains(feature, point));
-  };
-
-  const provinceAt = (event) => {
-    if (!provinceProjection) return null;
-    const rect = provinceCanvas.getBoundingClientRect();
-    const point = provinceProjection.invert([event.clientX - rect.left, event.clientY - rect.top]);
-    return provinces.find((feature) => d3.geoContains(feature, point));
+  const isOnGlobe = (position) => {
+    const dx = position[0] - width / 2;
+    const dy = position[1] - height / 2;
+    return Math.hypot(dx, dy) <= projection.scale() + 2;
   };
 
   const resetWorld = () => {
-    displayMode = "world";
     selected = null;
-    globeHost.hidden = false;
-    provinceCanvas.hidden = true;
+    chinaMode = false;
+    globeZoom = 1;
+    projection.rotate(defaultRotation);
     status.textContent = "World";
-    globeGroup.rotation.set(-0.16, 2.4, 0);
-    camera.position.z = 3.2;
-    drawMapTexture();
+    render();
     updatePanel(null);
   };
 
-  const resize = () => {
-    if (!renderer || !camera) return;
-    const width = globeHost.clientWidth;
-    const height = globeHost.clientHeight;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height, false);
-    drawProvinceMap();
+  const initialiseGlobe = (world, china) => {
+    countries = topojson.feature(world, world.objects.countries).features;
+    provinces = china.features.map((feature) => ({
+      ...feature,
+      properties: { ...feature.properties },
+      geometry: reverseProvinceRings(feature.geometry)
+    }));
+
+    projection = d3.geoOrthographic()
+      .translate([width / 2, height / 2])
+      .scale(baseScale)
+      .clipAngle(90)
+      .precision(0.35)
+      .rotate(defaultRotation);
+    path = d3.geoPath(projection);
+
+    svg = d3.select(globeHost)
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", "Rotatable globe with country and China province selection");
+
+    globeCircle = svg.append("circle")
+      .attr("class", "travel-globe__halo")
+      .attr("cx", width / 2)
+      .attr("cy", height / 2);
+    svg.append("path").attr("class", "travel-globe__ocean");
+    svg.append("path").attr("class", "travel-globe__graticule");
+    countryPaths = svg.append("g")
+      .attr("class", "travel-globe__countries")
+      .selectAll("path")
+      .data(countries)
+      .join("path")
+      .attr("class", "travel-globe__country");
+    boundaryPath = svg.append("path")
+      .attr("class", "travel-globe__boundary")
+      .datum(topojson.mesh(world, world.objects.countries, (left, right) => left !== right));
+    provincePaths = svg.append("g")
+      .attr("class", "travel-globe__provinces")
+      .selectAll("path")
+      .data(provinces)
+      .join("path")
+      .attr("class", "travel-globe__province");
+
+    let startRotation = projection.rotate();
+    let startPoint = [0, 0];
+    const drag = d3.drag()
+      .on("start", (event) => {
+        dragging = true;
+        didDrag = false;
+        startRotation = projection.rotate();
+        startPoint = [event.x, event.y];
+      })
+      .on("drag", (event) => {
+        const dx = event.x - startPoint[0];
+        const dy = event.y - startPoint[1];
+        if (Math.hypot(dx, dy) > 4) didDrag = true;
+        projection.rotate([
+          startRotation[0] + dx * 0.34,
+          clamp(startRotation[1] - dy * 0.34, -62, 62),
+          0
+        ]);
+        render();
+      })
+      .on("end", () => {
+        dragging = false;
+        window.setTimeout(() => { didDrag = false; }, 0);
+      });
+
+    svg.call(drag)
+      .on("click", (event) => {
+        if (dragging || didDrag) return;
+        const position = d3.pointer(event, svg.node());
+        if (!isOnGlobe(position)) return;
+        const target = featureAt(position);
+        if (!target) return;
+        if (target.level === "province") selectProvince(target.feature);
+        else selectCountry(target.feature);
+      })
+      .on("wheel", (event) => {
+        event.preventDefault();
+        globeZoom = clamp(globeZoom * (event.deltaY > 0 ? 0.88 : 1.14), 0.9, 2.8);
+        render();
+      });
+
+    status.textContent = "World";
+    render();
   };
 
-  globeHost.addEventListener("pointerdown", (event) => {
-    dragStart = { x: event.clientX, y: event.clientY };
-    lastPointer = dragStart;
-    isDragging = true;
-    idleFrames = 0;
-    globeHost.setPointerCapture?.(event.pointerId);
+  controls.zoomIn.addEventListener("click", () => {
+    globeZoom = clamp(globeZoom * 1.18, 0.9, 2.8);
+    render();
   });
-
-  globeHost.addEventListener("pointermove", (event) => {
-    if (!isDragging || !globeGroup) return;
-    const movementX = event.clientX - lastPointer.x;
-    const movementY = event.clientY - lastPointer.y;
-    globeGroup.rotation.y += movementX * 0.006;
-    globeGroup.rotation.x = Math.max(-0.75, Math.min(0.75, globeGroup.rotation.x + movementY * 0.006));
-    lastPointer = { x: event.clientX, y: event.clientY };
+  controls.zoomOut.addEventListener("click", () => {
+    globeZoom = clamp(globeZoom * 0.84, 0.9, 2.8);
+    render();
   });
-
-  globeHost.addEventListener("pointerup", (event) => {
-    const moved = dragStart && Math.hypot(event.clientX - dragStart.x, event.clientY - dragStart.y) > 6;
-    isDragging = false;
-    if (!moved) selectCountry(countryAt(event));
-  });
-
-  provinceCanvas.addEventListener("click", (event) => selectProvince(provinceAt(event)));
-
-  controls.zoomIn.addEventListener("click", () => { camera.position.z = Math.max(2.25, camera.position.z - 0.28); });
-  controls.zoomOut.addEventListener("click", () => { camera.position.z = Math.min(4.4, camera.position.z + 0.28); });
   controls.reset.addEventListener("click", resetWorld);
   controls.photoPrevious.addEventListener("click", () => {
     activePhotoIndex = (activePhotoIndex - 1 + activePhotos.length) % activePhotos.length;
@@ -332,16 +301,12 @@ import * as THREE from "../vendor/three.module.js";
     activePhotoIndex = (activePhotoIndex + 1) % activePhotos.length;
     renderPhoto();
   });
-  window.addEventListener("resize", resize);
 
   Promise.all([
-    fetch(`${baseUrl}/assets/data/countries-110m.json`).then((response) => response.json()),
-    fetch(`${baseUrl}/assets/data/china-provinces.json`).then((response) => response.json())
+    fetch(dataUrl("countries-110m.json")).then((response) => response.json()),
+    fetch(dataUrl("china-provinces.json")).then((response) => response.json())
   ]).then(([world, china]) => {
-    countries = topojson.feature(world, world.objects.countries).features;
-    provinces = china.features;
-    createGlobe();
-    status.textContent = "World";
+    initialiseGlobe(world, china);
   }).catch(() => {
     status.textContent = "Atlas unavailable";
     panelTitle.textContent = "The atlas is resting";

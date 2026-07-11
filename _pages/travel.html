@@ -1,0 +1,50 @@
+---
+permalink: /travel/
+title: "Travel"
+layout: blog-list
+---
+
+<nav class="blog-back"><a href="{{ '/' | relative_url }}">Home</a></nav>
+
+<section class="travel-page" data-travel-page>
+  <header class="travel-header">
+    <p class="travel-header__eyebrow">A small atlas</p>
+    <h1>Travel</h1>
+    <p>Places I have been, and the ones still waiting for their turn.</p>
+  </header>
+
+  <div class="travel-explorer" data-travel-explorer>
+    <section class="travel-map" aria-label="Interactive travel globe">
+      <div class="travel-map__status" aria-live="polite" data-travel-status>Loading atlas</div>
+      <div class="travel-globe" data-travel-globe></div>
+      <canvas class="travel-province-map" data-travel-province-map aria-label="Map of China's provinces" hidden></canvas>
+
+      <div class="travel-map__controls" aria-label="Globe controls">
+        <button class="travel-icon-button" type="button" aria-label="Zoom out" title="Zoom out" data-travel-zoom-out>&minus;</button>
+        <button class="travel-icon-button travel-icon-button--reset" type="button" aria-label="Return to world map" title="Return to world map" data-travel-reset>&#8962;</button>
+        <button class="travel-icon-button" type="button" aria-label="Zoom in" title="Zoom in" data-travel-zoom-in>+</button>
+      </div>
+    </section>
+
+    <aside class="travel-panel" aria-live="polite" data-travel-panel>
+      <div class="travel-panel__image-wrap">
+        <img class="travel-panel__image" data-travel-image src="{{ '/images/travel-empty.jpg' | relative_url }}" alt="A mountain path disappearing into clouds">
+        <div class="travel-panel__image-nav" data-travel-image-nav hidden>
+          <button class="travel-photo-button" type="button" aria-label="Previous photo" title="Previous photo" data-travel-photo-prev>&larr;</button>
+          <span data-travel-photo-count></span>
+          <button class="travel-photo-button" type="button" aria-label="Next photo" title="Next photo" data-travel-photo-next>&rarr;</button>
+        </div>
+      </div>
+      <div class="travel-panel__copy">
+        <p class="travel-panel__eyebrow" data-travel-panel-state>Atlas</p>
+        <h2 data-travel-title>Where next?</h2>
+        <p class="travel-panel__meta" data-travel-meta>One world, slowly unfolding.</p>
+        <p class="travel-panel__note" data-travel-note>Select a country to open a new page in the atlas.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script src="{{ '/assets/vendor/topojson-client.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/vendor/d3.min.js' | relative_url }}"></script>
+<script type="module" src="{{ '/assets/js/travel.js' | relative_url }}"></script>

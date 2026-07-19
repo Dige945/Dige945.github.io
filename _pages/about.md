@@ -39,9 +39,9 @@ redirect_from:
   </div>
 </section>
 
-Hi, I am **Yudi Xie** (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. [Mang Ye](https://marswhu.github.io/).
+Hi, I am **Yudi Xie** (谢宇迪), a third-year undergraduate student in Software Engineering (Honor Class) at Wuhan University. I am currently a student at the Multimedia Analysis and Reasoning Lab (MARS Lab), advised by Prof. [Mang Ye](https://marswhu.github.io/). I plan to continue my research with Prof. [Anyi Rao](https://anyirao.com/) at [MMLab@HKUST](https://mmlab-hkust.github.io/).
 
-My research interests focus on Computer Vision, Multi-Modal Learning, and Generative AI.
+My research interests focus on Computer Vision, Multi-Modal Learning, Videogen and World model.
 
 Beyond research, I enjoy orienteering, filming vlogs, marathon running, photography, geocaching, fingerstyle guitar, table tennis, singing, and more.
 

@@ -71,6 +71,13 @@ xieyudiwhu AT 163.com / [GitHub](https://github.com/Dige945) / [Blog]({{ '/blog/
 
 ---
 
+Academic Services:
+
+- Student Committee Member, [AI Film Frontiers (CVEU), SIGGRAPH Asia 2026](https://cveu.github.io/)
+- Reviewer, *IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)*
+
+---
+
 Miscs:
 
 <div class="home-misc">

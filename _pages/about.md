@@ -78,7 +78,8 @@ Academic Services:
 
 ---
 
-Miscs:
+<details class="home-misc-disclosure">
+  <summary>Miscs</summary>
 
 <div class="home-misc">
   <div class="home-misc__group">
@@ -125,3 +126,4 @@ Miscs:
     </ul>
   </div>
 </div>
+</details>

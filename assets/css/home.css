@@ -328,15 +328,18 @@ body.show-all-publications .home-publication.is-extra {
 }
 
 .home-misc-disclosure summary::after {
-  content: "+";
-  color: var(--home-muted);
-  font-size: 1.35rem;
-  font-weight: 400;
-  line-height: 1;
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.2rem;
+  border-top: 2px solid #222;
+  border-right: 2px solid #222;
+  transform: rotate(45deg);
+  transition: transform 160ms ease;
 }
 
 .home-misc-disclosure[open] summary::after {
-  content: "\2212";
+  transform: rotate(135deg);
 }
 
 .home-misc-disclosure summary:focus-visible {

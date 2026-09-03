@@ -313,7 +313,7 @@ body.show-all-publications .home-publication.is-extra {
 .home-misc-disclosure summary {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   padding: 0.55rem 0;
   color: var(--home-text);
@@ -331,7 +331,7 @@ body.show-all-publications .home-publication.is-extra {
   content: "";
   width: 0.45rem;
   height: 0.45rem;
-  margin-right: 0.2rem;
+  margin-left: 0.35rem;
   border-top: 2px solid #222;
   border-right: 2px solid #222;
   transform: rotate(45deg);

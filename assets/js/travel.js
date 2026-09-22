@@ -11,16 +11,23 @@
     "province:310000": {
       title: "Shanghai",
       meta: "China · 上海",
-      noteEn: "The Oriental Pearl rises above the river, a familiar silhouette in a city always moving.",
-      noteZh: "东方明珠立在江畔，熟悉的轮廓背后，是始终流动的上海。",
-      photos: ["/images/travel/shanghai-oriental-pearl.jpg"]
+      noteEn: "A stop at WAIC, where Shanghai's restless energy meets conversations about the future of AI.",
+      noteZh: "在世界人工智能大会停留一站，上海的活力与关于 AI 未来的讨论在这里相遇。",
+      photos: ["/images/travel/shanghai_waic.jpg"]
     },
     "province:340000": {
       title: "Anhui",
       meta: "China · 安徽 · 合肥",
       noteEn: "At USTC's old campus gate in Hefei, the journey pauses on the threshold of curiosity.",
       noteZh: "走到合肥中科大的老校门前，旅途在求知的门口停了一会儿。",
-      photos: ["/images/travel/anhui-ustc.jpg"]
+      photos: ["/images/travel/ustc.jpg"]
+    },
+    "province:610000": {
+      title: "Shaanxi",
+      meta: "China · 陕西 · 华山",
+      noteEn: "Below Mount Hua, evening gathers over the water while the ridgeline holds the last light.",
+      noteZh: "华山脚下，暮色慢慢落在水面，山脊还留着天边最后的光。",
+      photos: ["/images/travel/huashan_shannxi.jpg"]
     },
     "province:450000": {
       title: "Guangxi",

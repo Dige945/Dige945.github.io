@@ -8,6 +8,27 @@
   // Add visited places here. A key may be `country:Japan` or `province:420000`.
   // Each entry accepts title, meta, noteEn, noteZh, and any number of local photo paths.
   const places = {
+    "province:310000": {
+      title: "Shanghai",
+      meta: "China · 上海",
+      noteEn: "The Oriental Pearl rises above the river, a familiar silhouette in a city always moving.",
+      noteZh: "东方明珠立在江畔，熟悉的轮廓背后，是始终流动的上海。",
+      photos: ["/images/travel/shanghai-oriental-pearl.jpg"]
+    },
+    "province:340000": {
+      title: "Anhui",
+      meta: "China · 安徽 · 合肥",
+      noteEn: "At USTC's old campus gate in Hefei, the journey pauses on the threshold of curiosity.",
+      noteZh: "走到合肥中科大的老校门前，旅途在求知的门口停了一会儿。",
+      photos: ["/images/travel/anhui-ustc.jpg"]
+    },
+    "province:450000": {
+      title: "Guangxi",
+      meta: "China · 广西 · 桂林",
+      noteEn: "Along the Li River, limestone peaks and their reflections draw a landscape in ink and green.",
+      noteZh: "漓江两岸，青峰与倒影相接，把桂林写成一幅有颜色的水墨。",
+      photos: ["/images/travel/guangxi-guilin.jpg"]
+    },
     "province:320000": {
       title: "Jiangsu",
       meta: "China · 江苏",

@@ -97,6 +97,7 @@ Academic Services:
     <ul>
       <li>2023-2024 National Scholarship</li>
       <li>2024-2025 National Scholarship</li>
+      <li>2025-2026 National Scholarship</li>
       <li>Sensetime Scholarship (1/30 nationwide)</li>
       <li>First-Class Scholarship of Wuhan University</li>
       <li>Lei Jun Computer Innovation and Development Fund</li>
